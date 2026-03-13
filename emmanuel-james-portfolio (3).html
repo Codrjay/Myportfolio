@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmanuel James — The Data Guy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f8fa;
+  --white: #ffffff;
+  --surface: #f0f2f5;
+  --border: #e4e7ed;
+  --accent: #1a6bff;
+  --accent-light: #e8f0ff;
+  --accent2: #0d9f6e;
+  --accent2-light: #e6f7f1;
+  --accent3: #7c3aed;
+  --accent3-light: #f3eeff;
+  --dark: #0f1923;
+  --text: #1a2535;
+  --muted: #7a8799;
+  --muted2: #adb8c5;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(247,248,250,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 4rem;
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: .8rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-cta { background: var(--accent); color: #fff; font-size: .78rem; font-weight: 600; padding: .55rem 1.4rem; text-decoration: none; border-radius: 6px; transition: background .2s; }
+.nav-cta:hover { background: #0f55d6; }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 8rem 4rem 5rem; background: var(--white);
+  border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+}
+.hero-blob { position: absolute; right: -60px; top: 50%; transform: translateY(-50%); width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, #e8f0ff 0%, rgba(232,240,255,0) 70%); pointer-events: none; }
+.hero-inner { max-width: 620px; position: relative; z-index: 1; }
+.hero-badge { display: inline-flex; align-items: center; gap: .5rem; background: var(--accent-light); color: var(--accent); font-size: .73rem; font-weight: 600; padding: .4rem 1rem; border-radius: 20px; margin-bottom: 2rem; animation: fadeUp .5s ease both; }
+.badge-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+.hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5.5vw, 4.5rem); font-weight: 900; line-height: 1.08; color: var(--dark); letter-spacing: -.02em; animation: fadeUp .5s .07s ease both; }
+.hero-name span { color: var(--accent); }
+.hero-tagline { font-size: 1.05rem; font-weight: 500; color: var(--muted); margin-top: 1.2rem; animation: fadeUp .5s .14s ease both; }
+.hero-divider { width: 48px; height: 3px; background: var(--accent); border-radius: 2px; margin: 2rem 0; animation: fadeUp .5s .21s ease both; }
+.hero-bio { font-size: .95rem; line-height: 1.85; color: var(--text); animation: fadeUp .5s .28s ease both; }
+.hero-bio p { margin-bottom: .8rem; }
+.hero-bio strong { color: var(--accent); font-weight: 600; }
+.hero-actions { display: flex; gap: 1rem; margin-top: 2.5rem; animation: fadeUp .5s .35s ease both; flex-wrap: wrap; }
+.btn-main { background: var(--accent); color: #fff; font-size: .85rem; font-weight: 600; padding: .85rem 2rem; border-radius: 8px; text-decoration: none; transition: background .2s, transform .2s; }
+.btn-main:hover { background: #0f55d6; transform: translateY(-1px); }
+.btn-out { background: transparent; color: var(--text); font-size: .85rem; font-weight: 600; padding: .85rem 2rem; border-radius: 8px; border: 1.5px solid var(--border); text-decoration: none; transition: border-color .2s, color .2s; }
+.btn-out:hover { border-color: var(--accent); color: var(--accent); }
+.hero-right { position: absolute; right: 4rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1rem; animation: fadeUp .5s .42s ease both; z-index: 1; }
+.hstat { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.75rem; box-shadow: 0 2px 12px rgba(0,0,0,.06); min-width: 185px; }
+.hstat-val { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--dark); line-height: 1; }
+.hstat-val span { color: var(--accent); }
+.hstat-lab { font-size: .7rem; font-weight: 500; color: var(--muted); margin-top: .35rem; text-transform: uppercase; letter-spacing: .07em; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
+
+/* SECTIONS */
+.section { padding: 6rem 4rem; }
+.section-alt { background: var(--white); }
+.sec-label { font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: .6rem; }
+.sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; color: var(--dark); line-height: 1.15; }
+.sec-sub { font-size: .9rem; color: var(--muted); margin-top: .75rem; line-height: 1.7; max-width: 540px; }
+.sec-header { margin-bottom: 3.5rem; }
+.r { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.r.on { opacity: 1; transform: translateY(0); }
+
+/* WHAT I DO */
+.vp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.vp-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 2rem 1.75rem; transition: box-shadow .2s, transform .2s; }
+.vp-card:hover { box-shadow: 0 8px 30px rgba(26,107,255,.1); transform: translateY(-3px); }
+.vp-icon { font-size: 1.6rem; margin-bottom: 1.1rem; }
+.vp-title { font-weight: 700; font-size: .95rem; color: var(--dark); margin-bottom: .5rem; }
+.vp-desc { font-size: .8rem; line-height: 1.75; color: var(--muted); }
+.vp-q { margin-top: 1rem; padding: .75rem 1rem; background: var(--accent-light); border-radius: 8px; font-size: .78rem; font-style: italic; color: var(--accent); font-weight: 500; }
+
+/* PROJECTS */
+.proj-list { display: flex; flex-direction: column; gap: 2rem; }
+.proj-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: box-shadow .2s; display: grid; grid-template-columns: 1fr 1.1fr; }
+.proj-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,.08); }
+.proj-card.flip { grid-template-columns: 1.1fr 1fr; }
+.proj-card.flip .proj-body { order: 2; }
+.proj-card.flip .proj-viz { order: 1; border-left: none; border-right: 1px solid var(--border); }
+.proj-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+.proj-number { font-size: .7rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted2); margin-bottom: .6rem; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.2rem; }
+.tag { font-size: .68rem; font-weight: 600; padding: .25rem .7rem; border-radius: 20px; }
+.tag-b { background: var(--accent-light); color: var(--accent); }
+.tag-g { background: var(--accent2-light); color: var(--accent2); }
+.tag-p { background: var(--accent3-light); color: var(--accent3); }
+.tag-n { background: var(--surface); color: var(--muted); }
+.proj-title { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--dark); line-height: 1.25; margin-bottom: 1rem; }
+.proj-desc { font-size: .83rem; line-height: 1.85; color: var(--muted); }
+.proj-metrics { display: flex; gap: 2rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.pm-val { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 900; color: var(--dark); line-height: 1; }
+.pm-val span { color: var(--accent); }
+.pm-lab { font-size: .65rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: .25rem; }
+.proj-viz { background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; min-height: 300px; }
+.viz-header { padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border); background: var(--white); }
+.viz-header-label { font-size: .62rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+.viz-header-title { font-size: .85rem; font-weight: 700; color: var(--dark); }
+.viz-body { padding: 1.75rem; flex: 1; display: flex; align-items: center; }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+.sk-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: box-shadow .2s; }
+.sk-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); }
+.sk-name { font-weight: 700; font-size: .9rem; color: var(--dark); margin-bottom: .5rem; }
+.sk-desc { font-size: .77rem; line-height: 1.7; color: var(--muted); margin-bottom: 1.1rem; }
+.sk-track { height: 6px; background: var(--surface); border-radius: 3px; overflow: hidden; }
+.sk-fill { height: 100%; border-radius: 3px; transform: scaleX(0); transform-origin: left; transition: transform 1.1s cubic-bezier(.16,1,.3,1); }
+.sk-card.on .sk-fill { transform: scaleX(1); }
+
+/* PROCESS */
+.process-row { display: grid; grid-template-columns: repeat(6,1fr); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.proc { padding: 2rem 1.5rem; background: var(--white); border-right: 1px solid var(--border); position: relative; }
+.proc:last-child { border-right: none; }
+.proc-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--surface); line-height: 1; margin-bottom: .75rem; }
+.proc-icon { font-size: 1.3rem; margin-bottom: .75rem; }
+.proc-name { font-weight: 700; font-size: .88rem; color: var(--dark); margin-bottom: .4rem; }
+.proc-desc { font-size: .75rem; line-height: 1.7; color: var(--muted); }
+.proc::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform .35s ease; }
+.proc:hover::after { transform:scaleX(1); }
+
+/* PRODUCTS */
+.product-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 16px;
+  overflow: hidden; transition: box-shadow .2s, transform .2s;
+  display: grid; grid-template-columns: 1fr 1.1fr;
+}
+.product-card:hover { box-shadow: 0 8px 40px rgba(124,58,237,.1); transform: translateY(-2px); }
+.product-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+.product-eyebrow { font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--accent3); margin-bottom: .6rem; }
+.product-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); line-height: 1.15; margin-bottom: .5rem; }
+.product-sub { font-size: .82rem; font-weight: 600; color: var(--muted); margin-bottom: 1.25rem; }
+.product-desc { font-size: .83rem; line-height: 1.85; color: var(--muted); }
+.product-features { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: 1.5rem; }
+.pf { display: flex; align-items: flex-start; gap: .6rem; }
+.pf-dot { width: 7px; height: 7px; background: var(--accent3); border-radius: 50%; flex-shrink: 0; margin-top: .3rem; }
+.pf-text { font-size: .78rem; line-height: 1.55; color: var(--text); }
+.product-actions { display: flex; gap: .75rem; margin-top: 2rem; flex-wrap: wrap; }
+.product-btn { font-size: .8rem; font-weight: 600; padding: .75rem 1.5rem; border-radius: 8px; text-decoration: none; transition: background .2s, transform .2s; }
+.product-btn:hover { transform: translateY(-1px); }
+.product-btn-main { background: var(--accent3); color: #fff; }
+.product-btn-main:hover { background: #6929d4; }
+.product-btn-out { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+.product-btn-out:hover { border-color: var(--accent3); color: var(--accent3); }
+.product-visual { background: linear-gradient(135deg, #f3eeff 0%, #e8f0ff 100%); border-left: 1px solid var(--border); padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+.module-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.module { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; }
+.module-icon { font-size: 1.2rem; margin-bottom: .4rem; }
+.module-name { font-size: .75rem; font-weight: 700; color: var(--dark); margin-bottom: .2rem; }
+.module-desc { font-size: .65rem; line-height: 1.5; color: var(--muted); }
+.product-kpi-row { display: flex; gap: .75rem; margin-top: .75rem; }
+.pkpi { flex: 1; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: .85rem; text-align: center; }
+.pkpi-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--accent3); }
+.pkpi-lab { font-size: .6rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin-top: .2rem; }
+
+/* CONTACT */
+.contact-wrap { background: var(--dark); border-radius: 20px; padding: 4rem; text-align: center; position: relative; overflow: hidden; }
+.contact-wrap::before { content:''; position:absolute; top:-100px; left:50%; transform:translateX(-50%); width:500px; height:500px; border-radius:50%; background: radial-gradient(circle, rgba(26,107,255,.2) 0%, transparent 70%); pointer-events:none; }
+.contact-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:900; color:#fff; line-height:1.1; margin-bottom:1.2rem; position:relative; }
+.contact-title span { color: var(--accent); }
+.contact-sub { font-size:.9rem; color:rgba(255,255,255,.5); line-height:1.8; margin-bottom:3rem; max-width:480px; margin-left:auto; margin-right:auto; position:relative; }
+.contact-links { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; position:relative; }
+.c-btn { background:rgba(255,255,255,.08); color:#fff; font-size:.82rem; font-weight:600; padding:.85rem 2rem; border-radius:10px; border:1px solid rgba(255,255,255,.12); text-decoration:none; transition:background .2s; display:flex; align-items:center; gap:.6rem; }
+.c-btn:hover { background:rgba(255,255,255,.14); }
+.c-btn.primary { background:var(--accent); border-color:var(--accent); }
+.c-btn.primary:hover { background:#0f55d6; }
+
+footer { text-align:center; padding:2rem; font-size:.75rem; color:var(--muted); border-top:1px solid var(--border); }
+
+/* VIZ helpers */
+.bar-h { display:flex; flex-direction:column; gap:7px; width:100%; }
+.bh-row { display:flex; align-items:center; gap:8px; }
+.bh-label { font-size:.62rem; font-weight:500; color:var(--muted); width:82px; text-align:right; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.bh-track { flex:1; height:20px; background:var(--border); border-radius:4px; overflow:hidden; }
+.bh-fill { height:100%; border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:7px; }
+.bh-val { font-size:.58rem; font-weight:700; color:#fff; }
+.kpi-row { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; width:100%; }
+.kpi-box { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem; }
+.kpi-v { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--dark); line-height:1; }
+.kpi-v.blue { color:var(--accent); }
+.kpi-v.green { color:var(--accent2); }
+.kpi-l { font-size:.6rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.07em; margin-top:.3rem; }
+.seg-row { display:flex; flex-direction:column; gap:.5rem; width:100%; }
+.seg-item { display:flex; align-items:center; gap:.75rem; }
+.seg-label { font-size:.65rem; font-weight:500; color:var(--muted); width:90px; flex-shrink:0; }
+.seg-bar { flex:1; height:12px; background:var(--border); border-radius:6px; overflow:hidden; }
+.seg-fill { height:100%; border-radius:6px; }
+.seg-pct { font-size:.65rem; font-weight:700; color:var(--dark); width:38px; text-align:right; }
+.insight-box { padding: .85rem 1rem; border-radius: 8px; font-size: .75rem; font-weight: 500; line-height: 1.6; margin-top: .75rem; }
+.insight-blue { background: var(--accent-light); color: var(--accent); }
+.insight-green { background: var(--accent2-light); color: var(--accent2); }
+.insight-warn { background: #fff3e0; color: #e65100; }
+
+@media(max-width:1000px){ .process-row { grid-template-columns: repeat(3,1fr); } }
+@media(max-width:900px){
+  .proj-card,.proj-card.flip,.product-card { grid-template-columns:1fr; }
+  .proj-card.flip .proj-body { order:1; }
+  .proj-card.flip .proj-viz { order:2; border-right:none; border-top:1px solid var(--border); }
+  .proj-viz { border-left:none; border-top:1px solid var(--border); min-height:220px; }
+  .product-visual { border-left:none; border-top:1px solid var(--border); }
+  .hero-right { display:none; }
+  nav { padding:1rem 1.5rem; }
+  .section { padding:4rem 1.5rem; }
+  .hero { padding:7rem 1.5rem 4rem; }
+  .contact-wrap { padding:2.5rem 1.5rem; }
+  .process-row { grid-template-columns: repeat(2,1fr); }
+  .product-features { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Emmanuel <span>James</span></div>
+  <ul class="nav-links">
+    <li><a href="#what">What I Do</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's Talk</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="badge-dot"></span>Business Intelligence Analyst · Power BI Developer</div>
+    <h1 class="hero-name">Emmanuel James,<br><span>The Data Guy.</span></h1>
+    <p class="hero-tagline">I help businesses stop guessing and start deciding.</p>
+    <div class="hero-divider"></div>
+    <div class="hero-bio">
+      <p>I answer the questions every business owner is asking. <strong>How much have we made this year? Did we make profit despite all the money coming in? What product brought in the most? Who is my most valuable customer? Where should I focus my marketing?</strong></p>
+      <p>I take you from running your business <em>casually</em>, to running it <em>strategically</em> — using the data you already have.</p>
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-main">See My Projects</a>
+      <a href="#contact" class="btn-out">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hstat">
+      <div class="hstat-val">5<span>+</span></div>
+      <div class="hstat-lab">Industries Covered</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">4K<span>+</span></div>
+      <div class="hstat-lab">LinkedIn Impressions</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">100<span>%</span></div>
+      <div class="hstat-lab">Actionable Insights</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<section id="what" class="section section-alt">
+  <div class="sec-header r">
+    <div class="sec-label">What I Do</div>
+    <h2 class="sec-title">I turn data into decisions.</h2>
+    <p class="sec-sub">Every business generates data. Most businesses do not use it. I bridge that gap, from raw numbers to clear strategies you can act on today.</p>
+  </div>
+  <div class="vp-grid">
+    <div class="vp-card r"><div class="vp-icon">💰</div><div class="vp-title">Revenue and Profit Clarity</div><div class="vp-desc">I dig into your financials and give you a clear picture of where money is coming in, where it is leaking out, and whether growth is real.</div><div class="vp-q">"How much have we made and did we actually profit?"</div></div>
+    <div class="vp-card r"><div class="vp-icon">🛍️</div><div class="vp-title">Product Performance</div><div class="vp-desc">Not every product that sells well makes money. I identify your true profit drivers and flag the ones that look busy but quietly hurt your bottom line.</div><div class="vp-q">"What product brought in the most profit?"</div></div>
+    <div class="vp-card r"><div class="vp-icon">🤝</div><div class="vp-title">Customer Intelligence</div><div class="vp-desc">I analyse your customer base by segment, behaviour, and value so you know exactly who to retain, who to chase, and who to stop spending on.</div><div class="vp-q">"Who is my most valuable customer?"</div></div>
+    <div class="vp-card r"><div class="vp-icon">📍</div><div class="vp-title">Marketing Focus</div><div class="vp-desc">I tell you where your marketing efforts will land hardest, which segments, regions, and channels give you the best return for every naira spent.</div><div class="vp-q">"Where should I focus my marketing efforts?"</div></div>
+    <div class="vp-card r"><div class="vp-icon">📊</div><div class="vp-title">Interactive Dashboards</div><div class="vp-desc">I build Power BI dashboards your team can use themselves with slicers, drill-throughs, and KPIs, so insights are one click away, not buried in a spreadsheet.</div><div class="vp-q">"Can I see all of this in one place, updated automatically?"</div></div>
+    <div class="vp-card r"><div class="vp-icon">💡</div><div class="vp-title">Strategic Recommendations</div><div class="vp-desc">Analysis without action is noise. Every project I deliver ends with clear recommendations structured as observation, insight, and what to do next.</div><div class="vp-q">"So what should we actually do about this?"</div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="sec-header r">
+    <div class="sec-label">Projects</div>
+    <h2 class="sec-title">Real data. Real findings.</h2>
+    <p class="sec-sub">Top end-to-end projects and case studies spanning retail, sales, marketing, and strategic consulting — each one going the full distance from raw data to clear, actionable insights.</p>
+  </div>
+  <div class="proj-list">
+
+    <!-- PROJECT 1: Alpha Inc -->
+    <div class="proj-card r">
+      <div class="proj-body">
+        <div class="proj-number">Project 01 · Strategy and Consulting</div>
+        <div class="proj-tags">
+          <span class="tag tag-b">Strategic Analysis</span>
+          <span class="tag tag-g">Market Research</span>
+          <span class="tag tag-p">Executive Presentation</span>
+          <span class="tag tag-n">West Africa</span>
+        </div>
+        <h3 class="proj-title">Navigating West Africa's Growth Wave — Alpha Inc. Expansion Strategy</h3>
+        <p class="proj-desc">
+          Prepared a board-level strategic report for Alpha Inc. evaluating market expansion across Nigeria, Ghana, and Côte d'Ivoire. The analysis combined GDP trend data, CAGR comparisons, port efficiency scores, AfCFTA readiness ratings, and correlation analysis to determine the optimal expansion market.
+          <br><br>
+          Ran correlation analysis across three variable pairs and found a near-perfect inverse relationship (r = -0.98) between economy size and growth rate, confirming a catch-up growth effect. Ghana led on every agility metric despite Nigeria's commanding $490B GDP.
+          <br><br>
+          <strong>Recommendation delivered:</strong> Pivot to Ghana within three years to capitalise on its 4.9% CAGR and low entry friction, defend Nigeria, and monitor Côte d'Ivoire for medium-term expansion.
+        </p>
+        <div class="proj-metrics">
+          <div><div class="pm-val">3</div><div class="pm-lab">Markets Evaluated</div></div>
+          <div><div class="pm-val">$75B<span>+</span></div><div class="pm-lab">Market Opportunity</div></div>
+          <div><div class="pm-val">r=-0.98</div><div class="pm-lab">Key Correlation Found</div></div>
+        </div>
+      </div>
+      <div class="proj-viz">
+        <div class="viz-header">
+          <div class="viz-header-label">Key Findings</div>
+          <div class="viz-header-title">CAGR vs. GDP Size — West Africa</div>
+        </div>
+        <div class="viz-body">
+          <div style="width:100%">
+            <div style="font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.85rem;">5-Year CAGR Comparison</div>
+            <div class="bar-h">
+              <div class="bh-row"><div class="bh-label">Ghana</div><div class="bh-track"><div class="bh-fill" style="width:100%;background:var(--accent2)"><span class="bh-val">4.9%</span></div></div></div>
+              <div class="bh-row"><div class="bh-label">Côte d'Ivoire</div><div class="bh-track"><div class="bh-fill" style="width:90%;background:#34c896"><span class="bh-val">4.4%</span></div></div></div>
+              <div class="bh-row"><div class="bh-label">Nigeria</div><div class="bh-track"><div class="bh-fill" style="width:37%;background:#adb8c5"><span class="bh-val">1.8%</span></div></div></div>
+            </div>
+            <div class="kpi-row" style="margin-top:1.1rem;">
+              <div class="kpi-box"><div class="kpi-v" style="font-size:1.1rem;color:var(--accent);">r = -0.98</div><div class="kpi-l">CAGR vs. GDP size</div></div>
+              <div class="kpi-box"><div class="kpi-v" style="font-size:1.1rem;color:var(--accent2);">Ghana</div><div class="kpi-l">Recommended market</div></div>
+              <div class="kpi-box"><div class="kpi-v blue">$490B</div><div class="kpi-l">Nigeria GDP 2024</div></div>
+              <div class="kpi-box"><div class="kpi-v green">27%</div><div class="kpi-l">Ghana GDP growth</div></div>
+            </div>
+            <div class="insight-box insight-blue">💡 Smaller economies are catching up fast. Speed outweighs scale in a 3-year expansion window.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: Marketing Impact -->
+    <div class="proj-card flip r">
+      <div class="proj-viz">
+        <div class="viz-header">
+          <div class="viz-header-label">Key Findings</div>
+          <div class="viz-header-title">Offer Engagement by Customer Segment</div>
+        </div>
+        <div class="viz-body">
+          <div style="width:100%">
+            <div style="font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.85rem;">Completion Rate by Income and Gender</div>
+            <div class="seg-row">
+              <div class="seg-item"><div class="seg-label">Mid. Female</div><div class="seg-bar"><div class="seg-fill" style="width:68%;background:var(--accent2)"></div></div><div class="seg-pct">68%</div></div>
+              <div class="seg-item"><div class="seg-label">Mid. Male</div><div class="seg-bar"><div class="seg-fill" style="width:58%;background:var(--accent)"></div></div><div class="seg-pct">58%</div></div>
+              <div class="seg-item"><div class="seg-label">Low. Female</div><div class="seg-bar"><div class="seg-fill" style="width:56%;background:var(--accent2)"></div></div><div class="seg-pct">56%</div></div>
+              <div class="seg-item"><div class="seg-label">Low. Male</div><div class="seg-bar"><div class="seg-fill" style="width:47%;background:#ffb347"></div></div><div class="seg-pct">47%</div></div>
+              <div class="seg-item"><div class="seg-label">Mid. Other</div><div class="seg-bar"><div class="seg-fill" style="width:89%;background:#ffd166"></div></div><div class="seg-pct" style="color:var(--accent2);font-size:.6rem;">89% view</div></div>
+            </div>
+            <div class="insight-box insight-green">💡 Higher income and older age both correlate positively with completion rate. Confirmed via scatter analysis.</div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-number">Project 02 · Marketing Analytics</div>
+        <div class="proj-tags">
+          <span class="tag tag-b">Marketing Analytics</span>
+          <span class="tag tag-g">Customer Segmentation</span>
+          <span class="tag tag-n">3-Part Series</span>
+        </div>
+        <h3 class="proj-title">Maximizing Marketing Impact — Offer Engagement Analysis</h3>
+        <p class="proj-desc">
+          A three-part analysis of customer offer engagement across income groups, gender, and age, helping a marketing team understand who engages with offers, who actually converts, and why.
+          <br><br>
+          Used scatter plots to test four correlations. Found a positive relationship between income and completion rate, and between age and completion rate, but no clear relationship between income or age and viewing rate.
+          <br><br>
+          <strong>Key insight:</strong> Females consistently outperform in offer completion. Middle Income males dominate in transaction volume at 47,000 transactions, making them prime targets for volume campaigns. The "Other" gender segment shows an 89% viewing rate — small but highly engaged and worth a dedicated strategy.
+        </p>
+        <div class="proj-metrics">
+          <div><div class="pm-val">6<span>+</span></div><div class="pm-lab">Segments Analysed</div></div>
+          <div><div class="pm-val">4</div><div class="pm-lab">Correlations Tested</div></div>
+          <div><div class="pm-val">47K</div><div class="pm-lab">Mid. Male Transactions</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: CPM Sales -->
+    <div class="proj-card r">
+      <div class="proj-body">
+        <div class="proj-number">Project 03 · Sales Analytics</div>
+        <div class="proj-tags">
+          <span class="tag tag-b">Sales Analytics</span>
+          <span class="tag tag-g">Google Sheets</span>
+          <span class="tag tag-n">Multi-Table Data</span>
+        </div>
+        <h3 class="proj-title">CPM Sales Analysis — Computer Hardware Company</h3>
+        <p class="proj-desc">
+          Analysed the sales pipeline of a computer hardware company to answer four business questions: which region is performing best, are any agents falling behind, are there quarter-on-quarter trends, and which products have the best win rates.
+          <br><br>
+          Used XLOOKUP to merge multi-table data, inspected and validated blank fields against business logic. Open deals cannot have close values, so blanks here are valid, not dirty data. Built charts to surface findings clearly across all three regional teams.
+          <br><br>
+          <strong>Key insight:</strong> The Western region led in revenue at $3.57M while Central closed the most deals. Top agent Darcel Schlecht generated $1.15M alone. GTX Basic had a high win rate but low revenue, a clear pricing strategy red flag.
+        </p>
+        <div class="proj-metrics">
+          <div><div class="pm-val">$10M<span>+</span></div><div class="pm-lab">Revenue Analysed</div></div>
+          <div><div class="pm-val">3</div><div class="pm-lab">Regions Compared</div></div>
+          <div><div class="pm-val">4</div><div class="pm-lab">Business Questions</div></div>
+        </div>
+      </div>
+      <div class="proj-viz">
+        <div class="viz-header">
+          <div class="viz-header-label">Key Findings</div>
+          <div class="viz-header-title">Agent Performance by Region</div>
+        </div>
+        <div class="viz-body">
+          <div style="width:100%">
+            <div style="font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.85rem;">Opportunities Won — Central Region</div>
+            <div class="bar-h">
+              <div class="bh-row"><div class="bh-label">D. Schlecht</div><div class="bh-track"><div class="bh-fill" style="width:100%;background:var(--accent)"><span class="bh-val">349</span></div></div></div>
+              <div class="bh-row"><div class="bh-label">A. Snelling</div><div class="bh-track"><div class="bh-fill" style="width:60%;background:#4d8fff"><span class="bh-val">208</span></div></div></div>
+              <div class="bh-row"><div class="bh-label">V. Hillebrand</div><div class="bh-track"><div class="bh-fill" style="width:51%;background:#6ea3ff"><span class="bh-val">176</span></div></div></div>
+              <div class="bh-row"><div class="bh-label">J. Berthelot</div><div class="bh-track"><div class="bh-fill" style="width:49%;background:#8ab7ff"><span class="bh-val">171</span></div></div></div>
+              <div class="bh-row"><div class="bh-label">G. Colclough</div><div class="bh-track"><div class="bh-fill" style="width:39%;background:#a6cbff"><span class="bh-val">135</span></div></div></div>
+            </div>
+            <div class="kpi-row" style="margin-top:1.1rem;">
+              <div class="kpi-box"><div class="kpi-v blue">$3.57M</div><div class="kpi-l">West Revenue</div></div>
+              <div class="kpi-box"><div class="kpi-v green">63.4%</div><div class="kpi-l">West Win Rate</div></div>
+              <div class="kpi-box"><div class="kpi-v blue">$3.35M</div><div class="kpi-l">Central Revenue</div></div>
+              <div class="kpi-box"><div class="kpi-v green">58.9%</div><div class="kpi-l">Central Win Rate</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4: Retail Deep Dive -->
+    <div class="proj-card flip r">
+      <div class="proj-viz">
+        <div class="viz-header">
+          <div class="viz-header-label">Key Findings</div>
+          <div class="viz-header-title">Loss Growth Year on Year (2015 to 2018)</div>
+        </div>
+        <div class="viz-body">
+          <div style="width:100%">
+            <div class="bar-h">
+              <div class="bh-row"><div class="bh-label">2015</div><div class="bh-track"><div class="bh-fill" style="width:20%;background:#c5cdd8"><span class="bh-val">Low</span></div></div></div>
+              <div class="bh-row"><div class="bh-label">2016</div><div class="bh-track"><div class="bh-fill" style="width:34%;background:#90a4be"><span class="bh-val">+12%</span></div></div></div>
+              <div class="bh-row"><div class="bh-label">2017</div><div class="bh-track"><div class="bh-fill" style="width:62%;background:#4d7fbe"><span class="bh-val">+45%</span></div></div></div>
+              <div class="bh-row"><div class="bh-label">2018</div><div class="bh-track"><div class="bh-fill" style="width:100%;background:var(--accent)"><span class="bh-val">Peak</span></div></div></div>
+            </div>
+            <div class="kpi-row" style="margin-top:1.1rem;">
+              <div class="kpi-box"><div class="kpi-v" style="font-size:1.1rem;color:var(--accent);">Texas</div><div class="kpi-l">Highest loss state</div></div>
+              <div class="kpi-box"><div class="kpi-v" style="font-size:1.1rem;color:var(--accent);">Ohio</div><div class="kpi-l">2nd highest</div></div>
+              <div class="kpi-box"><div class="kpi-v" style="font-size:1.1rem;">1,871</div><div class="kpi-l">Total loss cases</div></div>
+              <div class="kpi-box"><div class="kpi-v" style="font-size:1.1rem;">Q4</div><div class="kpi-l">Seasonal spike</div></div>
+            </div>
+            <div class="insight-box insight-warn">⚠ Losses consistently spike in Q4 every year, suggesting seasonal or year-end operational pressure.</div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-number">Project 04 · Retail Analytics</div>
+        <div class="proj-tags">
+          <span class="tag tag-b">Retail Analytics</span>
+          <span class="tag tag-b">Power BI</span>
+          <span class="tag tag-n">2015 to 2018</span>
+          <span class="tag tag-n">3-Part Series</span>
+        </div>
+        <h3 class="proj-title">Uncovering Secrets in Our Business — Retail Store Deep Dive</h3>
+        <p class="proj-desc">
+          A three-part retail analysis covering four years of store data. Part 1 focused on losses and low performance. Part 2 examined profit trends. Part 3 looked at sales patterns, together delivering a complete business diagnostic.
+          <br><br>
+          Identified $156K in total losses across 1,871 cases. A key nuance uncovered: the least-profitable product and the worst-selling product were different items, a distinction most businesses overlook entirely. Losses concentrated in Central and East regions with a recurring Q4 seasonal spike every year.
+          <br><br>
+          Built a full Power BI dashboard for stakeholder self-service analysis, enabling the business to explore findings independently without needing an analyst present.
+        </p>
+        <div class="proj-metrics">
+          <div><div class="pm-val">$156K</div><div class="pm-lab">Total Loss Identified</div></div>
+          <div><div class="pm-val">4</div><div class="pm-lab">Years of Data</div></div>
+          <div><div class="pm-val">3</div><div class="pm-lab">Part Series</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="section section-alt">
+  <div class="sec-header r">
+    <div class="sec-label">Products</div>
+    <h2 class="sec-title">Tools I have built.</h2>
+    <p class="sec-sub">Beyond analysis, I build practical data tools that automate repetitive work and put business intelligence directly into the hands of everyday users.</p>
+  </div>
+
+  <div class="product-card r">
+    <div class="product-body">
+      <div class="product-eyebrow">Excel VBA · Business Management System</div>
+      <div class="product-title">ShopBoss</div>
+      <div class="product-sub">A complete business operating system built inside Microsoft Excel.</div>
+      <p class="product-desc">
+        ShopBoss is a fully automated business management system that enables small and medium-sized businesses to record sales, manage customers, track inventory, and monitor performance, all from within a familiar Excel interface. No expensive software. No technical expertise required.
+        <br><br>
+        Built with VBA, ShopBoss replaces manual spreadsheet chaos with structured, automated workflows. Every sale recorded automatically updates inventory levels, profit calculations, and dashboard metrics in real time. Business owners get a live view of how their business is performing without ever writing a formula.
+      </p>
+      <div class="product-features">
+        <div class="pf"><div class="pf-dot"></div><div class="pf-text">Sales recording with automatic inventory and profit updates</div></div>
+        <div class="pf"><div class="pf-dot"></div><div class="pf-text">Customer registration and purchase tracking</div></div>
+        <div class="pf"><div class="pf-dot"></div><div class="pf-text">Product and inventory management with size and variation support</div></div>
+        <div class="pf"><div class="pf-dot"></div><div class="pf-text">Percentage and manual discount handling with auto margin recalculation</div></div>
+        <div class="pf"><div class="pf-dot"></div><div class="pf-text">Interactive dashboard with KPIs, trend charts, and a month slicer</div></div>
+        <div class="pf"><div class="pf-dot"></div><div class="pf-text">Timeline chart for viewing performance across specific years or months</div></div>
+        <div class="pf"><div class="pf-dot"></div><div class="pf-text">Edit and delete records with automatic recalculation of all related data</div></div>
+        <div class="pf"><div class="pf-dot"></div><div class="pf-text">Designed for zero-code users, no Excel expertise needed</div></div>
+      </div>
+      <div class="product-actions">
+        <a href="https://selar.com/shopboss" target="_blank" class="product-btn product-btn-main">Get ShopBoss</a>
+        <a href="#contact" class="product-btn product-btn-out">Request a Demo</a>
+      </div>
+    </div>
+    <div class="product-visual">
+      <div style="font-size:.65rem;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.15em;margin-bottom:1rem;">Core Modules</div>
+      <div class="module-grid">
+        <div class="module">
+          <div class="module-icon">🛒</div>
+          <div class="module-name">Sales Entry</div>
+          <div class="module-desc">Record transactions with automatic inventory and profit sync</div>
+        </div>
+        <div class="module">
+          <div class="module-icon">📦</div>
+          <div class="module-name">Inventory</div>
+          <div class="module-desc">Track products, sizes, cost prices, and stock levels</div>
+        </div>
+        <div class="module">
+          <div class="module-icon">👥</div>
+          <div class="module-name">Customers</div>
+          <div class="module-desc">Register customers and track purchase history</div>
+        </div>
+        <div class="module">
+          <div class="module-icon">📊</div>
+          <div class="module-name">Dashboard</div>
+          <div class="module-desc">Live KPIs, trend charts, and month-by-month performance view</div>
+        </div>
+        <div class="module">
+          <div class="module-icon">✏️</div>
+          <div class="module-name">Manage Records</div>
+          <div class="module-desc">Edit or delete any record with full automatic recalculation</div>
+        </div>
+        <div class="module">
+          <div class="module-icon">📅</div>
+          <div class="module-name">Timeline Slicer</div>
+          <div class="module-desc">Filter performance by month, year, or any custom period</div>
+        </div>
+      </div>
+      <div class="product-kpi-row" style="margin-top:.75rem;">
+        <div class="pkpi"><div class="pkpi-val">6</div><div class="pkpi-lab">Core modules</div></div>
+        <div class="pkpi"><div class="pkpi-val">0</div><div class="pkpi-lab">Coding needed</div></div>
+        <div class="pkpi"><div class="pkpi-val">Excel</div><div class="pkpi-lab">Platform</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS + PROCESS -->
+<section id="skills" class="section">
+  <div class="sec-header r">
+    <div class="sec-label">Skills</div>
+    <h2 class="sec-title">What I work with.</h2>
+    <p class="sec-sub">End-to-end data skills from collecting and cleaning raw data to building dashboards and writing strategic recommendations.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="sk-card r"><div class="sk-name">🔍 Data Acquisition and Understanding</div><div class="sk-desc">Reading data dictionaries, mapping field relationships, and understanding what the data can answer before analysis starts.</div><div class="sk-track"><div class="sk-fill" style="width:90%;background:linear-gradient(90deg,var(--accent),#7eb9ff)"></div></div></div>
+    <div class="sk-card r"><div class="sk-name">🧹 Data Cleaning and Preparation</div><div class="sk-desc">Validating nulls against business logic, merging tables with XLOOKUP and joins, structuring data for clean downstream analysis.</div><div class="sk-track"><div class="sk-fill" style="width:92%;background:linear-gradient(90deg,var(--accent),#7eb9ff)"></div></div></div>
+    <div class="sk-card r"><div class="sk-name">📊 Exploratory Data Analysis</div><div class="sk-desc">Drilling through gender, age, region, and time dimensions to surface patterns, correlations, and outliers that matter to the business.</div><div class="sk-track"><div class="sk-fill" style="width:93%;background:linear-gradient(90deg,var(--accent),#7eb9ff)"></div></div></div>
+    <div class="sk-card r"><div class="sk-name">⚡ Power BI</div><div class="sk-desc">Interactive dashboards with slicers, drill-throughs, KPI cards, and multiple chart types. Executive-ready, self-service outputs.</div><div class="sk-track"><div class="sk-fill" style="width:91%;background:linear-gradient(90deg,var(--accent),#7eb9ff)"></div></div></div>
+    <div class="sk-card r"><div class="sk-name">🗄️ SQL and Google Sheets</div><div class="sk-desc">Complex queries, XLOOKUP, pivot tables, and charts. Tool-agnostic by design. The quality of thinking matters more than the software.</div><div class="sk-track"><div class="sk-fill" style="width:88%;background:linear-gradient(90deg,var(--accent),#7eb9ff)"></div></div></div>
+    <div class="sk-card r"><div class="sk-name">📋 Excel and VBA</div><div class="sk-desc">Advanced Excel including dynamic formulas, pivot tables, and VBA automation for building business management tools and automated reports.</div><div class="sk-track"><div class="sk-fill" style="width:89%;background:linear-gradient(90deg,var(--accent),#7eb9ff)"></div></div></div>
+    <div class="sk-card r"><div class="sk-name">🐍 Python</div><div class="sk-desc">Data wrangling with pandas, basic visualisation, and scripting for analysis automation. Solid foundation with room to grow.</div><div class="sk-track"><div class="sk-fill" style="width:65%;background:linear-gradient(90deg,var(--accent2),#7ed9b9)"></div></div></div>
+    <div class="sk-card r"><div class="sk-name">📈 R Programming</div><div class="sk-desc">Statistical analysis, data visualisation with ggplot2, and exploratory analysis. Comfortable working with R for analytical deep dives.</div><div class="sk-track"><div class="sk-fill" style="width:68%;background:linear-gradient(90deg,var(--accent2),#7ed9b9)"></div></div></div>
+    <div class="sk-card r"><div class="sk-name">📉 Tableau</div><div class="sk-desc">Building interactive data visualisations and dashboards. Familiar with Tableau's core functionality and chart-building workflow.</div><div class="sk-track"><div class="sk-fill" style="width:62%;background:linear-gradient(90deg,var(--accent2),#7ed9b9)"></div></div></div>
+    <div class="sk-card r"><div class="sk-name">💬 Insight Communication and Storytelling</div><div class="sk-desc">Every finding becomes a clear recommendation structured as observation, insight, and action. Written for any audience, technical or not.</div><div class="sk-track"><div class="sk-fill" style="width:95%;background:linear-gradient(90deg,var(--accent),#7eb9ff)"></div></div></div>
+  </div>
+
+  <div style="margin-top:4rem;">
+    <div class="sec-header r">
+      <div class="sec-label">Process</div>
+      <h2 class="sec-title">How I work.</h2>
+    </div>
+    <div class="process-row r">
+      <div class="proc"><div class="proc-num">01</div><div class="proc-icon">🗺️</div><div class="proc-name">Understand</div><div class="proc-desc">Map the data and understand what questions it can realistically answer.</div></div>
+      <div class="proc"><div class="proc-num">02</div><div class="proc-icon">🧹</div><div class="proc-name">Clean</div><div class="proc-desc">Fix anomalies, validate blanks against business logic, and merge tables.</div></div>
+      <div class="proc"><div class="proc-num">03</div><div class="proc-icon">❓</div><div class="proc-name">Question</div><div class="proc-desc">Frame specific business questions to keep the analysis focused and useful.</div></div>
+      <div class="proc"><div class="proc-num">04</div><div class="proc-icon">🔎</div><div class="proc-name">Explore</div><div class="proc-desc">Drill into segments, test correlations, and surface patterns that matter.</div></div>
+      <div class="proc"><div class="proc-num">05</div><div class="proc-icon">🎨</div><div class="proc-name">Visualise</div><div class="proc-desc">Build dashboards your team can use themselves, not just a static PDF.</div></div>
+      <div class="proc"><div class="proc-num">06</div><div class="proc-icon">💡</div><div class="proc-name">Recommend</div><div class="proc-desc">Every insight ends with a clear, specific action step your business can take.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section section-alt">
+  <div class="contact-wrap r">
+    <h2 class="contact-title">Ready to run your<br>business <span>strategically?</span></h2>
+    <p class="contact-sub">Let's look at your data together. Whether it is a one-off analysis, a dashboard build, or an ongoing analytics partnership, I am available.</p>
+    <div class="contact-links">
+      <a href="mailto:emmanueljamesthedataguy@gmail.com" class="c-btn primary">📧 Email Me</a>
+      <a href="https://www.linkedin.com/in/emmanueljamesthedataguy" target="_blank" class="c-btn">💼 LinkedIn</a>
+      <a href="https://drive.google.com/file/d/1VuF89pQxruFa2Ks16QJK2AXCv3UGTPLh/view?usp=sharing" target="_blank" class="c-btn">📄 Download CV</a>
+    </div>
+  </div>
+</section>
+
+<footer>Emmanuel James · The Data Guy · Business Intelligence Analyst · Power BI Developer · emmanueljamesthedataguy@gmail.com</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.r, .sk-card').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
