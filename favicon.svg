@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#0F1E36"/>
+  
+  <text x="49%" y="57%" 
+        dominant-baseline="middle" 
+        text-anchor="middle" 
+        font-family="Georgia, serif" 
+        font-style="italic" 
+        font-weight="bold"
+        font-size="18"
+        letter-spacing="-1.5">
+    <tspan fill="#FFFFFF">E</tspan>
+    <tspan fill="#B8956A" dx="-0.5">J</tspan>
+  </text>
+</svg>
