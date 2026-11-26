@@ -93,17 +93,19 @@ section{position:relative}
 /* HERO */
 .hero{padding-block:clamp(56px,8vw,110px) clamp(56px,7vw,96px);overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
-.hero h1{font-size:clamp(2.6rem,5.4vw,4.8rem);font-stretch:116%;letter-spacing:-.035em;line-height:.96}
-.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1{font-size:clamp(1.9rem,4vw,3.4rem);font-stretch:116%;letter-spacing:-.035em;line-height:.96}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em;white-space:nowrap}
 .hero h1 .line span{display:inline-block;animation:rise 1s var(--ease) both}
 .hero h1 .line:nth-child(2) span{animation-delay:.08s}
 .hero h1 .line:nth-child(3) span{animation-delay:.16s}
+.hero h1 .line:nth-child(4) span{animation-delay:.24s}
 @keyframes rise{from{transform:translateY(105%)}to{transform:none}}
 .hero .lede{margin-top:28px;animation:fade .9s .35s var(--ease) both}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px;animation:fade .9s .45s var(--ease) both}
 @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .creds{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);animation:fade .9s .55s var(--ease) both}
-.creds div{font-size:.9rem;color:var(--muted)}
+.creds div{font-size:.9rem;color:var(--muted);flex:1 1 220px}
+.creds .creds-k{flex-basis:100%;margin:0 0 2px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep)}
 .creds b{display:block;font-family:var(--f-display);font-stretch:110%;font-size:1.05rem;color:var(--ink)}
 @media (max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
 .hero .wrap>*{min-width:0}
@@ -312,6 +314,7 @@ section{position:relative}
 .item .peek{display:grid;gap:6px;font-size:.9rem;color:var(--ink)}
 .item .peek>span{display:grid;grid-template-columns:16px 1fr;gap:8px}
 .item .peek svg{margin-top:4px}
+.item .assure{display:block;font-size:.8rem;line-height:1.45;color:var(--muted);padding-top:10px;border-top:1px dashed var(--line)}
 .item .more{font-weight:700;color:var(--deep);font-size:.92rem}
 .item .act{display:grid;grid-template-columns:1fr auto;gap:8px;padding:0 24px 24px}
 .item .act .btn{justify-content:center;padding:12px 16px;font-size:.92rem}
@@ -449,13 +452,59 @@ body.locked{overflow:hidden}
 .demo-in .btn{margin-top:6px}
 .media iframe.demo-frame{aspect-ratio:auto;height:min(80vh,680px);background:#fff}
 @media (max-width:620px){.demo-launch{aspect-ratio:4/5}.media iframe.demo-frame{height:78vh}}
+/* GOOD TO KNOW */
+.terms{margin-top:88px;padding-top:56px;border-top:1px solid var(--line)}
+.terms-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;margin-bottom:32px}
+.terms-title{font-size:clamp(1.8rem,3.4vw,2.6rem);font-stretch:116%;letter-spacing:-.03em}
+.terms .eyebrow{color:var(--deep)}
+.pay-card{background:var(--ink);color:#fff;border-radius:22px;padding:clamp(22px,3vw,34px);display:grid;gap:18px;margin-bottom:28px}
+.pay-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.pay-top .mono{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-light)}
+.pay-top b{font-family:var(--f-display);font-weight:800;font-stretch:112%;font-size:1.35rem}
+.pay-bar{display:flex;gap:6px;height:44px}
+.pay-bar i{display:flex;align-items:center;padding:0 14px;border-radius:10px;background:var(--sky);color:var(--ink);font-style:normal;font-family:var(--f-mono);font-weight:700}
+.pay-bar i+i{background:var(--baby)}
+.pay-legend{display:grid;grid-template-columns:7fr 3fr;gap:16px}
+.pay-legend b{display:block;font-size:1rem}
+.pay-legend span{color:var(--muted-dark);font-size:.9rem}
+.pay-note{margin:0;padding-top:14px;border-top:1px solid var(--line-dark);color:#D5DBE5;font-size:.92rem}
+.terms-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.terms-grid div{background:var(--white);padding:22px 22px 24px}
+.terms-grid .mono{font-size:.75rem;color:var(--deep)}
+.terms-grid h4{font-family:var(--f-display);font-weight:800;font-stretch:108%;font-size:1.08rem;margin:8px 0 6px}
+.terms-grid p{margin:0;color:var(--muted);font-size:.93rem;line-height:1.55}
+.terms-grid p b{color:var(--text)}
+.terms-link{color:var(--deep);font-weight:700}
+@media (max-width:900px){.terms-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.terms-head{grid-template-columns:1fr}.terms-grid{grid-template-columns:1fr}.pay-legend{grid-template-columns:1fr}.pay-bar i{padding:0 10px}}
+[data-theme="dark"] .terms-grid div{background:var(--surface)}
+[data-theme="dark"] .process div{border-top-color:var(--text)}
+[data-theme="dark"] .pay-card{background:#07090D;border:1px solid #2A3140}
+#showcase + .gap{border-top:1px solid #2A3140}
+@media (max-width:350px){.hero h1{font-size:1.7rem}}
+/* HERO TYPER */
+.typer{display:grid;margin:0 0 22px;font-family:var(--f-mono);font-size:clamp(1rem,1.5vw,1.2rem);font-weight:500;color:var(--deep);line-height:1.45}
+.typer>span{grid-area:1/1}
+.typer-ghost{visibility:hidden}
+.typer-live::before{content:"\203A\00a0";color:var(--sky)}
+.typer-live::after{content:"";display:inline-block;width:.55em;height:1.05em;margin-left:2px;vertical-align:-.15em;background:var(--sky);animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+.typer-ghost::before{content:"\203A\00a0"}
+.typer-ghost::after{content:"";display:inline-block;width:.55em}
+.hero .lede b{color:var(--text)}
+@media (prefers-reduced-motion:reduce){.typer-live::after{animation:none}}
 /* PRODUCTS */
-.prods{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.prods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+@media (max-width:1200px){.prods{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.prod-new{display:inline-block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep)}
+.prod .prod-price{font-size:.9rem;color:var(--muted)}
+.prod .prod-price b{color:var(--text)}
 @media (max-width:900px){.prods{grid-template-columns:1fr}}
 .prod{display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit}
 .cover{aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:var(--ink);position:relative;transition:transform .5s var(--ease),box-shadow .5s}
 .prod:hover .cover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(11,111,196,.45)}
 .cover img{width:100%;height:100%;object-fit:cover}
+.cover.sq{aspect-ratio:1/1}
 .cover.type{display:flex;flex-direction:column;justify-content:space-between;padding:28px;color:var(--white)}
 .cover.type.alt{background:var(--sky);color:var(--ink)}
 .cover.type .mono{opacity:.8}
@@ -488,6 +537,7 @@ body.locked{overflow:hidden}
 @media (max-width:900px){.about-grid{grid-template-columns:minmax(0,1fr)}}
 .proof{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:20px;padding:28px;display:grid;gap:16px}
 .proof b{font-family:var(--f-display);font-weight:900;font-stretch:118%;font-size:clamp(3.4rem,7vw,5rem);line-height:.9;color:var(--sky-light);letter-spacing:-.04em}
+.proof b.proof-line{font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.02;letter-spacing:-.03em}
 .proof p{font-size:.98rem;color:var(--muted-dark)}
 .proof p strong{color:var(--white)}
 .stack{display:grid;gap:26px}
@@ -555,17 +605,19 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <p class="eyebrow">Business intelligence &middot; Analytics &middot; Product builds</p>
-      <h1><span class="line"><span>Data that</span></span><span class="line"><span>tells you what</span></span><span class="line"><span class="blue">to do next.</span></span></h1>
-      <p class="lede">I&rsquo;m Emmanuel James, The Data Guy. I build dashboards, tools and apps that show business owners where money is made, where it leaks, and which decision to make on Monday morning.</p>
+      <p class="typer" aria-label="Selling every day, but no profit to show? Fully booked, yet the account is always low? Cash always tight, even in a good month? Not sure that discount made money? Busy all week, but which clients really pay? Can&rsquo;t say what really makes you money?"><span class="typer-ghost" aria-hidden="true">Fully booked, yet the account is always low?</span><span class="typer-live" aria-hidden="true" id="typer">Selling every day, but no profit to show?</span></p>
+      <h1><span class="line"><span>Hi, I&rsquo;m</span></span><span class="line"><span>Emmanuel&nbsp;James,</span></span><span class="line"><span class="blue">The&nbsp;Data&nbsp;Guy.</span></span></h1>
+      <p class="lede">I help business owners fix exactly that. My dashboards, tools and apps show you where your money is made, where it leaks, and what to do about it on Monday morning.</p>
       <div class="hero-ctas">
-        <a class="btn btn-ink magnetic" href="#work">See the work <span class="arr">&rarr;</span></a>
+        <a class="btn btn-ink magnetic" href="#work">See my work <span class="arr">&rarr;</span></a>
         <a class="btn btn-ghost magnetic" href="#services">Services and pricing</a>
       </div>
       <div class="creds">
-        <div><b>34% more profit</b>per unit, from one pricing change</div>
-        <div><b>3+ years</b>across 3+ industries</div>
-        <div><b>131 questions</b>researched from real owners</div>
+        <p class="creds-k">3+ years across 3+ industries</p>
+        <div><b>Dashboards</b>Power BI and web, explained in plain words</div>
+        <div><b>Business apps</b>ShopBoss and MyFin, built end to end</div>
+        <div><b>Tools and playbooks</b>Excel calculators, trackers and guides</div>
+        <div><b>Research</b>131 owner questions behind the Decision Gap Model</div>
       </div>
     </div>
 
@@ -573,11 +625,9 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
       <div class="ph"><img src="assets/emmanuel-james.webp" alt="Emmanuel James, The Data Guy" width="800" height="800"></div>
       <figcaption>Abuja &middot; Working worldwide</figcaption>
       <div class="me-card">
-        <p class="mono me-k">About me</p>
-        <h2 class="me-name">Emmanuel James</h2>
-        <p class="me-role">CEO and Founder, Beyond Sales</p>
-        <p class="me-bio">Business intelligence analyst and builder. I started in my own fragrance business, My Aura Scents, and now help owners who hold stock see what they really keep.</p>
-        <p class="me-school"><b>First Class</b> B.Sc. Industrial Mathematics with Computer Science, Covenant University</p>
+        <p class="mono me-k">CEO and Founder</p>
+        <h2 class="me-name">Beyond Sales</h2>
+        <p class="me-school"><b>First Class</b> Industrial Mathematics with Computer Science, Covenant University</p>
         <a class="me-more" href="#about">My full story <span class="arr">&darr;</span></a>
       </div>
     </figure>
@@ -588,10 +638,38 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
   <div class="ticker-track" id="ticker"></div>
 </div>
 
+<section class="band" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Selected work</p><h2>Builds, not just dashboards.</h2></div>
+      <p class="lede">Each project starts from a business question and ends with a decision someone can make. Pick one to see it as it really is.</p>
+    </div>
+    <div class="projects" id="projList"></div>
+  </div>
+</section>
+
+<section class="dark band" id="showcase" aria-label="Project showcase">
+  <div class="wrap">
+    <div class="tabs" role="tablist" aria-label="Projects" id="tabs"></div>
+    <div class="stage" id="stage" role="tabpanel"></div>
+    <div class="earlier rv" style="margin-top:56px">
+      <div><h3 style="color:var(--white)">More analysis on LinkedIn</h3><p class="lede" style="font-size:.98rem;margin-top:8px">Marketing, sales and retail case studies, written for business readers.</p></div>
+      <ul class="dark-list">
+        <li><a href="https://www.linkedin.com/pulse/maximizing-marketing-resultspart-one-emmanuel-james-7btff" target="_blank" rel="noopener"><span>Offer engagement analysis<small>Customer segmentation, 3 parts</small></span>&nearr;</a></li>
+        <li><a href="https://www.linkedin.com/pulse/cpm-sales-analysis-emmanuel-james-hutyf/" target="_blank" rel="noopener"><span>Sales pipeline analysis<small>Regional and agent performance</small></span>&nearr;</a></li>
+        <li><a href="https://www.linkedin.com/pulse/uncovering-hidden-secrets-our-businesspart-1-emmanuel-james-fwssf" target="_blank" rel="noopener"><span>Retail store deep dive<small>Losses, profit trends, 4 years</small></span>&nearr;</a></li>
+        <li><a href="https://github.com/codrjay/checkmystocks" target="_blank" rel="noopener"><span>Checkmystocks documentation<small>GitHub, full methodology</small></span>&nearr;</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section class="dark band gap" id="gap">
   <div class="wrap">
     <p class="eyebrow">My thought process</p>
-    <h2>Sales can look healthy while the business bleeds.</h2>
+    <h2>The answers are already in your data.</h2>
+    <p class="manifesto">Most owners never see them, so cash stays tight and they are stuck, unsure what to do next. That space is the Decision Gap. Business intelligence is the bridge, and I build it from the data you already have.</p>
+    <figure class="dg-art rv" id="gapArt"><svg class="bridge" viewBox="0 0 1000 540" role="img" aria-labelledby="dgmT dgmD" xmlns="http://www.w3.org/2000/svg"><title id="dgmT">The Decision Gap Model</title><desc id="dgmD">A bridge crosses the gap between the business owner and the decision. Its four planks are the four layers: what is happening, why, what it means, and what to do. Business intelligence is the cable that holds the bridge up. Planks two and three are where most of the 131 questions stalled.</desc><defs><pattern id="dgDots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#2A3140"/></pattern><linearGradient id="dgPit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141821"/><stop offset="1" stop-color="#05070A"/></linearGradient><linearGradient id="dgRock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1D2330"/><stop offset="1" stop-color="#11151D"/></linearGradient></defs><rect width="1000" height="540" fill="url(#dgDots)"/><path d="M232 262 L768 222 L768 540 L232 540Z" fill="url(#dgPit)"/><line class="dg-depth" x1="252" y1="330" x2="748" y2="330" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="1.00"/><line class="dg-depth" x1="252" y1="354" x2="748" y2="354" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.91"/><line class="dg-depth" x1="252" y1="378" x2="748" y2="378" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.82"/><line class="dg-depth" x1="252" y1="402" x2="748" y2="402" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.73"/><line class="dg-depth" x1="252" y1="426" x2="748" y2="426" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.64"/><line class="dg-depth" x1="252" y1="450" x2="748" y2="450" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.55"/><line class="dg-depth" x1="252" y1="474" x2="748" y2="474" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.46"/><line class="dg-depth" x1="252" y1="498" x2="748" y2="498" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.37"/><line class="dg-depth" x1="252" y1="522" x2="748" y2="522" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.28"/><text x="500" y="492" text-anchor="middle" class="dg-gap">THE GAP</text><text x="500" y="522" text-anchor="middle" class="dg-mono dg-dim">FEAR, ASSUMPTIONS, GUESSWORK</text><path d="M0 262 H232 L246 314 L226 382 L252 452 L236 540 H0Z" fill="url(#dgRock)" stroke="#2A3140"/><path d="M1000 222 H768 L756 286 L776 352 L750 432 L764 540 H1000Z" fill="url(#dgRock)" stroke="#2A3140"/><line x1="20" y1="302" x2="202" y2="302" stroke="#2A3140" stroke-dasharray="40 10"/><line x1="20" y1="336" x2="202" y2="336" stroke="#2A3140" stroke-dasharray="18 8"/><line x1="20" y1="370" x2="202" y2="370" stroke="#2A3140" stroke-dasharray="40 10"/><line x1="20" y1="404" x2="202" y2="404" stroke="#2A3140" stroke-dasharray="18 8"/><line x1="20" y1="438" x2="202" y2="438" stroke="#2A3140" stroke-dasharray="40 10"/><line x1="798" y1="262" x2="980" y2="262" stroke="#2A3140"/><line x1="798" y1="296" x2="980" y2="296" stroke="#2A3140"/><line x1="798" y1="330" x2="980" y2="330" stroke="#2A3140"/><line x1="798" y1="364" x2="980" y2="364" stroke="#2A3140"/><line x1="798" y1="398" x2="980" y2="398" stroke="#2A3140"/><line x1="798" y1="432" x2="980" y2="432" stroke="#2A3140"/><text x="26" y="358" class="dg-h">THE OWNER</text><text x="26" y="386" class="dg-mono dg-dim">DECIDING BLIND</text><text x="974" y="322" text-anchor="end" class="dg-h">THE DECISION</text><text x="974" y="350" text-anchor="end" class="dg-mono dg-dim">CONFIDENT, OWNED</text><rect x="324" y="96" width="12" height="308.6865671641791" rx="2" fill="#2A3140"/><rect x="324" y="96" width="12" height="308.6865671641791" rx="2" class="dg-tower"/><rect x="664" y="64" width="12" height="315.3134328358209" rx="2" fill="#2A3140"/><rect x="664" y="64" width="12" height="315.3134328358209" rx="2" class="dg-tower"/><path d="M70 262 L330 96" class="dg-cable" pathLength="1"/><path id="dgSpan" d="M330 96 Q500 332.0 670 64" class="dg-cable" pathLength="1"/><path d="M670 64 L930 222" class="dg-cable" pathLength="1"/><line x1="354.3" y1="127.1" x2="354.3" y2="251.9" class="dg-hang" style="transition-delay:0.94s"/><line x1="378.6" y1="153.1" x2="378.6" y2="250.1" class="dg-hang" style="transition-delay:0.98s"/><line x1="402.9" y1="174.0" x2="402.9" y2="248.2" class="dg-hang" style="transition-delay:1.02s"/><line x1="427.1" y1="189.7" x2="427.1" y2="246.4" class="dg-hang" style="transition-delay:1.06s"/><line x1="451.4" y1="200.3" x2="451.4" y2="244.6" class="dg-hang" style="transition-delay:1.10s"/><line x1="475.7" y1="205.7" x2="475.7" y2="242.8" class="dg-hang" style="transition-delay:1.14s"/><line x1="500.0" y1="206.0" x2="500.0" y2="241.0" class="dg-hang" style="transition-delay:1.18s"/><line x1="524.3" y1="201.1" x2="524.3" y2="239.2" class="dg-hang" style="transition-delay:1.22s"/><line x1="548.6" y1="191.1" x2="548.6" y2="237.4" class="dg-hang" style="transition-delay:1.26s"/><line x1="572.9" y1="176.0" x2="572.9" y2="235.6" class="dg-hang" style="transition-delay:1.30s"/><line x1="597.1" y1="155.7" x2="597.1" y2="233.8" class="dg-hang" style="transition-delay:1.34s"/><line x1="621.4" y1="130.3" x2="621.4" y2="231.9" class="dg-hang" style="transition-delay:1.38s"/><line x1="645.7" y1="99.7" x2="645.7" y2="230.1" class="dg-hang" style="transition-delay:1.42s"/><text class="dg-mono dg-bi" dy="-12"><textPath href="#dgSpan" startOffset="50%" text-anchor="middle">BUSINESS INTELLIGENCE</textPath></text><polygon points="235.0,261.8 363.0,252.2 363.0,268.2 235.0,277.8" class="pk done" style="transition-delay:1.20s"/><text x="299.0" y="241.0" text-anchor="middle" class="dg-num">01</text><text x="299.0" y="299.0" text-anchor="middle" class="dg-mono dg-lbl">WHAT</text><polygon points="369.0,251.8 497.0,242.2 497.0,258.2 369.0,267.8" class="pk todo" style="transition-delay:1.55s"/><text x="433.0" y="231.0" text-anchor="middle" class="dg-num">02</text><text x="433.0" y="289.0" text-anchor="middle" class="dg-mono dg-lbl">WHY</text><polygon points="503.0,241.8 631.0,232.2 631.0,248.2 503.0,257.8" class="pk todo" style="transition-delay:1.90s"/><text x="567.0" y="221.0" text-anchor="middle" class="dg-num">03</text><text x="567.0" y="279.0" text-anchor="middle" class="dg-mono dg-lbl">MEANING</text><polygon points="637.0,231.8 765.0,222.2 765.0,238.2 637.0,247.8" class="pk todo" style="transition-delay:2.25s"/><text x="701.0" y="211.0" text-anchor="middle" class="dg-num">04</text><text x="701.0" y="269.0" text-anchor="middle" class="dg-mono dg-lbl">ACTION</text><circle cx="232" cy="262" r="7" fill="#fff"/><circle cx="768" cy="222" r="7" fill="#2A9DF4"/><circle cx="768" cy="222" r="14" class="dg-pulse"/><path d="M372.0 296.0 V306.0 H628.0 V296.0 M500 306.0 V332.0" class="dg-brk"/><text x="500" y="358.0" text-anchor="middle" class="dg-mono dg-warn">MOST OF THE 131 QUESTIONS STALLED HERE</text></svg><ul class="dg-key"><li><i class="k-own"></i>Left: the owner, deciding blind</li><li><i class="k-dec"></i>Right: the decision, made with confidence</li><li><i class="k-bi"></i>The cable: business intelligence holds the bridge up</li><li><i class="k-stall"></i>Planks 02 and 03eds.</h2>
     <p class="manifesto">Most owners watch sales. Few can say what they actually kept. The distance between what you see and what is really happening is the Decision Gap. Business intelligence is the bridge, and I build it from the data you already have.</p>
     <figure class="dg-art rv" id="gapArt"><svg class="bridge" viewBox="0 0 1000 540" role="img" aria-labelledby="dgmT dgmD" xmlns="http://www.w3.org/2000/svg"><title id="dgmT">The Decision Gap Model</title><desc id="dgmD">A bridge crosses the gap between the business owner and the decision. Its four planks are the four layers: what is happening, why, what it means, and what to do. Business intelligence is the cable that holds the bridge up. Planks two and three are where most of the 131 questions stalled.</desc><defs><pattern id="dgDots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#2A3140"/></pattern><linearGradient id="dgPit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141821"/><stop offset="1" stop-color="#05070A"/></linearGradient><linearGradient id="dgRock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1D2330"/><stop offset="1" stop-color="#11151D"/></linearGradient></defs><rect width="1000" height="540" fill="url(#dgDots)"/><path d="M232 262 L768 222 L768 540 L232 540Z" fill="url(#dgPit)"/><line class="dg-depth" x1="252" y1="330" x2="748" y2="330" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="1.00"/><line class="dg-depth" x1="252" y1="354" x2="748" y2="354" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.91"/><line class="dg-depth" x1="252" y1="378" x2="748" y2="378" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.82"/><line class="dg-depth" x1="252" y1="402" x2="748" y2="402" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.73"/><line class="dg-depth" x1="252" y1="426" x2="748" y2="426" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.64"/><line class="dg-depth" x1="252" y1="450" x2="748" y2="450" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.55"/><line class="dg-depth" x1="252" y1="474" x2="748" y2="474" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.46"/><line class="dg-depth" x1="252" y1="498" x2="748" y2="498" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.37"/><line class="dg-depth" x1="252" y1="522" x2="748" y2="522" stroke="#1D2330" stroke-width="1" stroke-dasharray="2 10" opacity="0.28"/><text x="500" y="492" text-anchor="middle" class="dg-gap">THE GAP</text><text x="500" y="522" text-anchor="middle" class="dg-mono dg-dim">FEAR, ASSUMPTIONS, GUESSWORK</text><path d="M0 262 H232 L246 314 L226 382 L252 452 L236 540 H0Z" fill="url(#dgRock)" stroke="#2A3140"/><path d="M1000 222 H768 L756 286 L776 352 L750 432 L764 540 H1000Z" fill="url(#dgRock)" stroke="#2A3140"/><line x1="20" y1="302" x2="202" y2="302" stroke="#2A3140" stroke-dasharray="40 10"/><line x1="20" y1="336" x2="202" y2="336" stroke="#2A3140" stroke-dasharray="18 8"/><line x1="20" y1="370" x2="202" y2="370" stroke="#2A3140" stroke-dasharray="40 10"/><line x1="20" y1="404" x2="202" y2="404" stroke="#2A3140" stroke-dasharray="18 8"/><line x1="20" y1="438" x2="202" y2="438" stroke="#2A3140" stroke-dasharray="40 10"/><line x1="798" y1="262" x2="980" y2="262" stroke="#2A3140"/><line x1="798" y1="296" x2="980" y2="296" stroke="#2A3140"/><line x1="798" y1="330" x2="980" y2="330" stroke="#2A3140"/><line x1="798" y1="364" x2="980" y2="364" stroke="#2A3140"/><line x1="798" y1="398" x2="980" y2="398" stroke="#2A3140"/><line x1="798" y1="432" x2="980" y2="432" stroke="#2A3140"/><text x="26" y="358" class="dg-h">THE OWNER</text><text x="26" y="386" class="dg-mono dg-dim">DECIDING BLIND</text><text x="974" y="322" text-anchor="end" class="dg-h">THE DECISION</text><text x="974" y="350" text-anchor="end" class="dg-mono dg-dim">CONFIDENT, OWNED</text><rect x="324" y="96" width="12" height="308.6865671641791" rx="2" fill="#2A3140"/><rect x="324" y="96" width="12" height="308.6865671641791" rx="2" class="dg-tower"/><rect x="664" y="64" width="12" height="315.3134328358209" rx="2" fill="#2A3140"/><rect x="664" y="64" width="12" height="315.3134328358209" rx="2" class="dg-tower"/><path d="M70 262 L330 96" class="dg-cable" pathLength="1"/><path id="dgSpan" d="M330 96 Q500 332.0 670 64" class="dg-cable" pathLength="1"/><path d="M670 64 L930 222" class="dg-cable" pathLength="1"/><line x1="354.3" y1="127.1" x2="354.3" y2="251.9" class="dg-hang" style="transition-delay:0.94s"/><line x1="378.6" y1="153.1" x2="378.6" y2="250.1" class="dg-hang" style="transition-delay:0.98s"/><line x1="402.9" y1="174.0" x2="402.9" y2="248.2" class="dg-hang" style="transition-delay:1.02s"/><line x1="427.1" y1="189.7" x2="427.1" y2="246.4" class="dg-hang" style="transition-delay:1.06s"/><line x1="451.4" y1="200.3" x2="451.4" y2="244.6" class="dg-hang" style="transition-delay:1.10s"/><line x1="475.7" y1="205.7" x2="475.7" y2="242.8" class="dg-hang" style="transition-delay:1.14s"/><line x1="500.0" y1="206.0" x2="500.0" y2="241.0" class="dg-hang" style="transition-delay:1.18s"/><line x1="524.3" y1="201.1" x2="524.3" y2="239.2" class="dg-hang" style="transition-delay:1.22s"/><line x1="548.6" y1="191.1" x2="548.6" y2="237.4" class="dg-hang" style="transition-delay:1.26s"/><line x1="572.9" y1="176.0" x2="572.9" y2="235.6" class="dg-hang" style="transition-delay:1.30s"/><line x1="597.1" y1="155.7" x2="597.1" y2="233.8" class="dg-hang" style="transition-delay:1.34s"/><line x1="621.4" y1="130.3" x2="621.4" y2="231.9" class="dg-hang" style="transition-delay:1.38s"/><line x1="645.7" y1="99.7" x2="645.7" y2="230.1" class="dg-hang" style="transition-delay:1.42s"/><text class="dg-mono dg-bi" dy="-12"><textPath href="#dgSpan" startOffset="50%" text-anchor="middle">BUSINESS INTELLIGENCE</textPath></text><polygon points="235.0,261.8 363.0,252.2 363.0,268.2 235.0,277.8" class="pk done" style="transition-delay:1.20s"/><text x="299.0" y="241.0" text-anchor="middle" class="dg-num">01</text><text x="299.0" y="299.0" text-anchor="middle" class="dg-mono dg-lbl">WHAT</text><polygon points="369.0,251.8 497.0,242.2 497.0,258.2 369.0,267.8" class="pk todo" style="transition-delay:1.55s"/><text x="433.0" y="231.0" text-anchor="middle" class="dg-num">02</text><text x="433.0" y="289.0" text-anchor="middle" class="dg-mono dg-lbl">WHY</text><polygon points="503.0,241.8 631.0,232.2 631.0,248.2 503.0,257.8" class="pk todo" style="transition-delay:1.90s"/><text x="567.0" y="221.0" text-anchor="middle" class="dg-num">03</text><text x="567.0" y="279.0" text-anchor="middle" class="dg-mono dg-lbl">MEANING</text><polygon points="637.0,231.8 765.0,222.2 765.0,238.2 637.0,247.8" class="pk todo" style="transition-delay:2.25s"/><text x="701.0" y="211.0" text-anchor="middle" class="dg-num">04</text><text x="701.0" y="269.0" text-anchor="middle" class="dg-mono dg-lbl">ACTION</text><circle cx="232" cy="262" r="7" fill="#fff"/><circle cx="768" cy="222" r="7" fill="#2A9DF4"/><circle cx="768" cy="222" r="14" class="dg-pulse"/><path d="M372.0 296.0 V306.0 H628.0 V296.0 M500 306.0 V332.0" class="dg-brk"/><text x="500" y="358.0" text-anchor="middle" class="dg-mono dg-warn">MOST OF THE 131 QUESTIONS STALLED HERE</text></svg><ul class="dg-key"><li><i class="k-own"></i>Left: the owner, deciding blind</li><li><i class="k-dec"></i>Right: the decision, made with confidence</li><li><i class="k-bi"></i>The cable: business intelligence holds the bridge up</li><li><i class="k-stall"></i>Planks 02 and 03: where most of the 131 questions stalled</li></ul><figcaption><span>The Decision Gap Model</span><span>Built from 131 real owner questions</span></figcaption></figure>
     <div class="steps">
