@@ -93,7 +93,8 @@ section{position:relative}
 /* HERO */
 .hero{padding-block:clamp(56px,8vw,110px) clamp(56px,7vw,96px);overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
-.hero h1{font-size:clamp(1.9rem,4vw,3.4rem);font-stretch:116%;letter-spacing:-.035em;line-height:.96}
+.hero .hero-name{margin:0 0 14px;font-family:var(--f-mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(1.9rem,4.2vw,3.7rem);font-stretch:116%;letter-spacing:-.035em;line-height:.96}
 .hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em;white-space:nowrap}
 .hero h1 .line span{display:inline-block;animation:rise 1s var(--ease) both}
 .hero h1 .line:nth-child(2) span{animation-delay:.08s}
@@ -178,6 +179,8 @@ section{position:relative}
 .proj .go{margin-top:6px}
 @media (max-width:620px){.proj .pbo div{grid-template-columns:1fr;gap:2px}}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag.has-ti{display:inline-flex;align-items:center;gap:7px}
+.tag .ti{flex:none}
 .tag{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.04em;padding:5px 9px;border-radius:6px;background:var(--white);border:1px solid var(--line);color:var(--ink)}
 .status{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;border-radius:999px;background:var(--baby);color:var(--deep);white-space:nowrap}
 .status i{width:6px;height:6px;border-radius:50%;background:currentColor}
@@ -199,14 +202,21 @@ section{position:relative}
 .dark .earlier li small{color:var(--muted-dark)}
 /* HERO PORTRAIT */
 .hero .wrap{grid-template-columns:1.1fr .9fr}
-.portrait{position:relative;margin:0;animation:panelIn 1.1s .15s var(--ease) both;max-width:480px;justify-self:end;width:100%}
+.portrait{position:relative;margin:0;animation:panelIn 1.1s .15s var(--ease) both;max-width:380px;justify-self:end;width:100%}
 .portrait .ph{border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:var(--ink-2)}
 .portrait .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.portrait .pstage{position:relative;width:100%;aspect-ratio:1/1.2}
+.portrait .halo{position:absolute;left:0;right:0;bottom:0;aspect-ratio:1;border-radius:50%}
+.portrait .halo{background:radial-gradient(circle at 28% 22%,#D6ECFF 0,var(--sky) 58%,#4AA3EA 100%)}
+.portrait .cutwrap{position:absolute;left:-20%;width:140%;top:0;height:100%;
+  -webkit-mask:linear-gradient(#000,#000) 0 0/100% 58.333% no-repeat,radial-gradient(circle closest-side,#000 99%,transparent 100%) 50% 100%/71.43% 83.333% no-repeat;
+  mask:linear-gradient(#000,#000) 0 0/100% 58.333% no-repeat,radial-gradient(circle closest-side,#000 99%,transparent 100%) 50% 100%/71.43% 83.333% no-repeat}
+.portrait .cutwrap img{position:absolute;left:5.36%;bottom:0;width:89.29%;height:auto;display:block;filter:drop-shadow(0 18px 22px rgba(10,20,40,.22))}
 .portrait figcaption{position:absolute;top:18px;left:18px;background:rgba(255,255,255,.92);color:var(--ink);border-radius:999px;padding:7px 14px;font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
 .portrait .panel{position:absolute;left:-56px;bottom:-36px;width:min(330px,86%);padding:18px;border-radius:18px;animation:panelIn 1.1s .5s var(--ease) both}
 .portrait .panel .chart{margin-top:0}
 .portrait .panel .say{min-height:4.6em;font-size:.92rem;margin-top:12px}
-@media (max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.portrait{justify-self:start;max-width:440px}.portrait .panel{position:relative;left:auto;bottom:auto;width:auto;margin:-48px 14px 0}}
+@media (max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.portrait{justify-self:start;max-width:340px}.portrait .panel{position:relative;left:auto;bottom:auto;width:auto;margin:-48px 14px 0}}
 
 /* SHOWCASE */
 .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
@@ -297,7 +307,7 @@ section{position:relative}
 @media (max-width:800px){.process{grid-template-columns:1fr}}
 
 /* SHOP */
-.shop-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.shop-bar{display:flex;justify-content:space-between;margin-top:-8px;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
 .shop-bar .seg-light{margin:0}
 .seg-light button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
 .cart-btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--white);border:0;border-radius:999px;padding:10px 12px 10px 18px;min-height:48px;font-weight:700}
@@ -321,6 +331,11 @@ section{position:relative}
 .item .alt{font-family:var(--f-mono);font-size:.82rem;color:var(--deep-2)}
 .item .fix{display:grid;gap:10px;font-size:.9rem;line-height:1.45;color:var(--ink)}
 .item .fix b{display:block;font-family:var(--f-mono);font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep);margin-bottom:2px}
+.item .addon-line{display:block;font-size:.82rem;line-height:1.45;color:var(--muted)}
+.item .addon-line b{display:block;font-family:var(--f-mono);font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep);margin-bottom:2px}
+.item .tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.item .tools b{font-family:var(--f-mono);font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep);margin-right:4px}
+.item .tools .tag{font-size:.74rem;padding:4px 8px}
 .item .time{align-self:flex-start;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--deep-2)}
 .item .peek{display:grid;gap:6px;font-size:.9rem;color:var(--ink)}
 .item .peek>span{display:grid;grid-template-columns:16px 1fr;gap:8px}
@@ -423,7 +438,7 @@ body.locked{overflow:hidden}
 @keyframes dgPulse{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(1.9)}}
 @media (prefers-reduced-motion:reduce){.bridge .dg-cable,.bridge .dg-hang,.bridge .pk.todo{transition:none}.bridge.on .dg-pulse{animation:none}}
 /* HERO ABOUT CARD */
-.me-card{position:absolute;left:-64px;bottom:-40px;width:min(360px,90%);background:var(--ink);color:#fff;border-radius:20px;padding:22px 24px;box-shadow:0 40px 80px -30px rgba(11,111,196,.5);border:1px solid var(--line-dark);animation:panelIn 1.1s .5s var(--ease) both}
+.me-card{position:absolute;left:-40px;bottom:-24px;width:min(280px,82%);background:var(--ink);color:#fff;border-radius:20px;padding:22px 24px;box-shadow:0 40px 80px -30px rgba(11,111,196,.5);border:1px solid var(--line-dark);animation:panelIn 1.1s .5s var(--ease) both}
 .me-card .me-k{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-light);margin:0 0 8px}
 .me-card .me-name{font-size:1.5rem;font-stretch:115%;color:#fff}
 .me-card .me-role{margin:4px 0 12px;font-weight:700;color:var(--sky-light);font-size:.95rem}
@@ -431,7 +446,7 @@ body.locked{overflow:hidden}
 .me-card .me-school{margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line-dark);font-size:.82rem;color:var(--muted-dark)}
 .me-card .me-school b{color:#fff;margin-right:4px}
 .me-card .me-more{display:inline-block;margin-top:12px;color:#fff;font-weight:700;font-size:.9rem;text-decoration:none;border-bottom:2px solid var(--sky)}
-@media (max-width:960px){.me-card{position:relative;left:auto;bottom:auto;width:auto;margin:-56px 14px 0}}
+@media (max-width:960px){.me-card{position:relative;left:auto;bottom:auto;width:auto;margin:-40px 10px 0}}
 /* DARK MODE */
 .theme-btn{width:42px;height:42px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer;margin-left:auto;margin-right:-8px;transition:background .2s}
 .theme-btn:hover{background:var(--mist)}
@@ -479,6 +494,37 @@ body.locked{overflow:hidden}
 .pay-legend b{display:block;font-size:1rem}
 .pay-legend span{color:var(--muted-dark);font-size:.9rem}
 .pay-note{margin:0;padding-top:14px;border-top:1px solid var(--line-dark);color:#D5DBE5;font-size:.92rem}
+.doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:40px}
+.door{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:10px;padding:clamp(20px,2.6vw,30px);border:1px solid var(--line);border-radius:20px;background:var(--white);transition:transform .35s var(--ease),border-color .25s,box-shadow .35s}
+.door[aria-pressed="true"]{border-color:var(--sky);background:var(--mist);box-shadow:0 22px 44px -28px rgba(11,111,196,.45)}
+.shop-hint{margin:0;color:var(--muted);font-size:.95rem}
+#shopPanel{margin-top:8px;scroll-margin-top:110px}
+.quick-more{margin-top:28px;border-top:1px solid var(--line);padding-top:8px}
+.quick-more summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:14px;font-weight:700;font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--deep);padding:16px 24px;min-height:56px;border:1.5px solid var(--deep);border-radius:999px;margin:6px 0 8px;transition:background-color .25s,color .25s}
+.quick-more summary:hover{background:var(--deep);color:#fff}
+.quick-more summary::-webkit-details-marker{display:none}
+.quick-more summary::after{content:"+";font-size:1.6rem;line-height:1}
+.quick-more[open] summary::after{content:"\2212"}
+.quick-more summary:focus-visible{outline:2px solid var(--sky);outline-offset:4px;border-radius:6px}
+.quick-more .shop{margin-top:12px}
+.door:hover{transform:translateY(-3px);border-color:var(--sky);box-shadow:0 22px 44px -28px rgba(11,111,196,.45)}
+.door:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+.door .mono{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep)}
+.door b{font-family:var(--f-display);font-weight:800;font-stretch:108%;font-size:clamp(1.2rem,2vw,1.5rem);line-height:1.2;color:var(--ink)}
+.door>span:not(.mono):not(.door-go){color:var(--muted);font-size:.98rem;line-height:1.5}
+.door .door-go{margin-top:6px;font-weight:700;color:var(--deep);font-size:.95rem}
+[data-theme="dark"] .door{background:#fff;border-color:#CFE8FC}
+[data-theme="dark"] .door[aria-pressed="true"]{background:#EEF6FD;border-color:#2A9DF4}
+[data-theme="dark"] .door b{color:#0B0D12}
+[data-theme="dark"] .door .mono,[data-theme="dark"] .door .door-go{color:#0B4F8F}
+[data-theme="dark"] .door>span:not(.mono):not(.door-go){color:#3A4252}
+[data-theme="dark"] .tier{background:var(--surface);color:var(--text)}
+@media (max-width:700px){.doors{grid-template-columns:minmax(0,1fr)}}
+.terms-more summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--deep);padding:12px 0;margin-bottom:14px}
+.terms-more summary::-webkit-details-marker{display:none}
+.terms-more summary::after{content:"+";font-size:1.3rem;line-height:1}
+.terms-more[open] summary::after{content:"\2212"}
+.terms-more summary:focus-visible{outline:2px solid var(--sky);outline-offset:4px;border-radius:6px}
 .terms-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
 .terms-grid div{background:var(--white);padding:22px 22px 24px}
 .terms-grid .mono{font-size:.75rem;color:var(--deep)}
@@ -512,6 +558,7 @@ body.locked{overflow:hidden}
 .testi-card{flex:0 0 min(100%,680px);scroll-snap-align:start;margin:0;display:grid;gap:16px}
 .testi-card img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line)}
 .testi-card figcaption{display:grid;gap:2px;padding-left:4px}
+.testi-card .stars{display:flex;gap:3px;margin-bottom:6px}
 .testi-card figcaption b{font-size:1.05rem;font-stretch:108%}
 .testi-card figcaption span{color:var(--muted);font-size:.92rem}
 .testi-nav{display:flex;align-items:center;gap:14px;margin-top:22px}
@@ -602,6 +649,9 @@ body.locked{overflow:hidden}
 .socials a:hover{background:var(--ink-3)}
 .socials small{display:block;color:var(--muted-dark);font-size:.78rem;font-family:var(--f-mono)}
 .socials a>span{min-width:0;overflow-wrap:anywhere}
+.socials .lbl{display:flex;align-items:center;gap:14px;min-width:0}
+.soc{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.12)}
+.email .soc{width:38px;height:38px}
 .socials a.wide{grid-column:1/-1}
 @media (max-width:560px){.socials{grid-template-columns:1fr}}
 .next-steps{margin-top:22px;color:var(--muted-dark);font-size:.95rem;display:grid;gap:6px}
@@ -642,7 +692,8 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
   <div class="wrap">
     <div>
       <p class="typer" aria-label="Selling every day, but no profit to show? Fully booked, yet the account is always low? Cash always tight, even in a good month? Not sure that discount made money? Busy all week, but which clients really pay? Can&rsquo;t say what really makes you money?"><span class="typer-ghost" aria-hidden="true">Fully booked, yet the account is always low?</span><span class="typer-live" aria-hidden="true" id="typer">Selling every day, but no profit to show?</span></p>
-      <h1><span class="line"><span>Hi, I&rsquo;m</span></span><span class="line"><span>Emmanuel&nbsp;James,</span></span><span class="line"><span class="blue">The&nbsp;Data&nbsp;Guy.</span></span></h1>
+      <p class="hero-name">Emmanuel James &middot; The Data Guy</p>
+      <h1><span class="line"><span>Clear numbers.</span></span><span class="line"><span class="blue">Clear decisions.</span></span></h1>
       <p class="lede">I help you build dashboards, tools and apps that show you where your money is made, where it leaks, and what to do about it on Monday morning.</p>
       <div class="hero-ctas">
         <a class="btn btn-ink magnetic" href="#work">See my work <span class="arr">&rarr;</span></a>
@@ -657,7 +708,10 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
     </div>
 
     <figure class="portrait">
-      <div class="ph"><img src="assets/emmanuel-james.webp" alt="Emmanuel James, The Data Guy" width="800" height="800"></div>
+      <div class="pstage">
+        <span class="halo" aria-hidden="true"></span>
+        <div class="cutwrap"><img src="assets/emmanuel-james-cutout.webp" alt="Emmanuel James, The Data Guy" width="800" height="770"></div>
+      </div>
       <div class="me-card">
         <p class="mono me-k">CEO and Founder</p>
         <h2 class="me-name">Beyond Sales</h2>
@@ -712,18 +766,33 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
   <div class="wrap">
     <div class="sec-head">
       <div><p class="eyebrow">Services</p><h2>Start with the problem you have.</h2></div>
-      <p class="lede">Each plan starts from a real problem. See who it is for, what it fixes, what you get and how long it takes. Add what fits to your cart, and we confirm everything on a short call before you pay.</p>
+      <p class="lede">Choose the one that sounds like you. Each plan shows who it is for, what it fixes and what you get. We confirm everything on a short call before you pay.</p>
+    </div>
+    <div class="doors">
+      <button type="button" class="door" data-door="build" aria-pressed="false">
+        <span class="mono">For business owners</span>
+        <b>I run a business and cannot see my numbers.</b>
+        <span>I am afraid money is leaking and I will only find out when it is too late.</span>
+        <span class="door-go">See business builds <span class="arr">&darr;</span></span>
+      </button>
+      <button type="button" class="door" data-door="coach" aria-pressed="false">
+        <span class="mono">For learners and analysts</span>
+        <b>I want a data career and have nothing to show.</b>
+        <span>I am afraid of another year of courses and no interviews.</span>
+        <span class="door-go">See coaching <span class="arr">&darr;</span></span>
+      </button>
     </div>
     <div class="shop-bar">
-      <div class="seg-light" role="group" aria-label="Filter services" id="shopFilter">
-        <button type="button" aria-pressed="true" data-f="all">All</button>
-        <button type="button" aria-pressed="false" data-f="build">Built for your business</button>
-        <button type="button" aria-pressed="false" data-f="coach">Coaching and mentorship</button>
-        <button type="button" aria-pressed="false" data-f="quick">Quick sessions</button>
-      </div>
+      <p class="shop-hint" id="shopHint">Pick the one that sounds like you, and the plans appear.</p>
       <button type="button" class="cart-btn" id="cartBtn" aria-label="Open cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span>Cart</span><b id="cartCount">0</b></button>
     </div>
-    <div class="shop" id="shopGrid"></div>
+    <div id="shopPanel" hidden>
+      <div class="shop" id="shopGrid"></div>
+      <details class="quick-more" id="quickMore">
+        <summary id="quickSummary">Above your budget?</summary>
+        <div class="shop" id="quickGrid"></div>
+      </details>
+    </div>
     <div class="process">
       <div class="rv"><span class="mono">Step 1</span><h3 class="h4">Choose and book</h3><p>Add what you need to your cart, then book a free 30 minute call.</p></div>
       <div class="rv"><span class="mono">Step 2</span><h3 class="h4">Three questions</h3><p>Why you reached out, what&rsquo;s holding you back, and where you want to be. Then we agree the scope and final price together.</p></div>
@@ -740,6 +809,8 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
         <div class="pay-legend"><div><b>70% to start</b><span>Paid when you approve the written proposal. Work begins once it lands.</span></div><div><b>30% on delivery</b><span>Paid when the build is done and checked with you, before final files and admin access are handed over.</span></div></div>
         <p class="pay-note">Coaching and quick sessions are paid in full before the first session.</p>
       </div>
+      <details class="terms-more">
+      <summary>Read all 12 terms</summary>
       <div class="terms-grid">
         <div class="rv"><span class="mono">01</span><h4>Free first call</h4><p>Thirty minutes to understand your business and what you need. No cost and no obligation.</p></div>
         <div class="rv"><span class="mono">02</span><h4>Scope in writing</h4><p>You get a proposal with what I&rsquo;ll build, what you&rsquo;ll receive, the timeline and the fee. Nothing starts until you approve it.</p></div>
@@ -747,13 +818,14 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
         <div class="rv"><span class="mono">04</span><h4>Timelines</h4><p>The clock starts once the first payment is in and I have access to your records. Every plan shows its typical timeline.</p></div>
         <div class="rv"><span class="mono">05</span><h4>Your part</h4><p>Access to your records, one person who can make decisions, and feedback within five working days. If a project goes quiet for 30 days, I pause it and we agree a new date.</p></div>
         <div class="rv"><span class="mono">06</span><h4>Extra work</h4><p>Anything outside the written scope is quoted before I start, or billed at <b><span data-usd="15">$15</span> an hour</b>. You approve it first, every time.</p></div>
-        <div class="rv"><span class="mono">07</span><h4>Support after launch</h4><p>The Decision Dashboard includes a 30 day check-in, and the Full Business System includes 60 days of support. Ongoing monthly support can be agreed separately.</p></div>
+        <div class="rv"><span class="mono">07</span><h4>Support after launch</h4><p>The Decision Dashboard includes a 30 day check-in, and the Full Business System includes 30 days of support. Ongoing monthly support can be agreed separately.</p></div>
         <div class="rv"><span class="mono">08</span><h4>Your data stays yours</h4><p>Your records are used only for your project and never shared. I never publish databases, passwords or keys, I remove my access at handover, and nothing goes in my portfolio without your written permission.</p></div>
         <div class="rv"><span class="mono">09</span><h4>Ownership</h4><p>Once the final payment is made, the files, dashboards and tools I build for you are yours to keep and use.</p></div>
         <div class="rv"><span class="mono">10</span><h4>Cancelling</h4><p>Cancel before work starts and your first payment is refunded in full. After work starts, it covers the work already done. Coaching sessions can be moved with 24 hours&rsquo; notice.</p></div>
         <div class="rv"><span class="mono">11</span><h4>Software costs are separate</h4><p>Licences and hosting, such as Power BI Pro, domains or app hosting, are paid directly by you and never included in my prices.</p></div>
         <div class="rv"><span class="mono">12</span><h4>Clarity, not guarantees</h4><p>My work gives you clear numbers and a sound basis for decisions. Results still depend on the decisions you make, so I don&rsquo;t promise a specific revenue or profit figure.</p></div>
       </div>
+      </details>
     </div>
   </div>
 </section>
@@ -810,7 +882,8 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
       <a class="prod rv" href="https://selar.com/13d2f47759" target="_blank" rel="noopener">
         <div class="cover logo-cover"><img src="assets/shopboss-mark.svg" alt="" width="120" height="120"><b>Shop<span>Boss</span></b><span class="mono">Excel edition</span></div>
         <h3>ShopBoss, Excel edition</h3>
-        <p>Sales, inventory, customers and a profit dashboard, automated with VBA inside a workbook you already know.</p>
+        <p>Sales, inventory, customers and a profit dashboard, automated with VBA inside a workbook you already know. I wrote the VBA myself.</p>
+        <div class="tags" style="margin:2px 0 6px"><span class="tag">Excel and VBA</span></div>
         <span class="go-link">Get it on Selar &nearr;</span>
       </a>
     </div>
@@ -869,16 +942,16 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
     <div class="row">
       <div>
         <p class="lede" style="margin-bottom:24px">Tell me what you sell and what keeps you up at night. I&rsquo;ll reply with the questions I&rsquo;d ask first.</p>
-        <div class="email"><a href="mailto:emmanueljamesthedataguy@gmail.com?subject=Project%20enquiry" id="emailLink">emmanueljamesthedataguy@gmail.com</a><button class="copy" id="copyBtn" type="button">Copy</button></div>
+        <div class="email"><i class="soc" style="background:#0B6FC4" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7.5l8 6 8-6"/></svg></i><a href="mailto:emmanueljamesthedataguy@gmail.com?subject=Project%20enquiry" id="emailLink">emmanueljamesthedataguy@gmail.com</a><button class="copy" id="copyBtn" type="button">Copy</button></div>
         <a class="btn btn-sky" style="margin-top:24px" href="https://calendly.com/emmanueljamesthedataguy/30min" target="_blank" rel="noopener">Book a free 30 minute call &nearr;</a>
         <div class="next-steps"><span>1. Book a call, or email me a short note about your business.</span><span>2. I ask three questions to understand the problem.</span><span>3. We review a proposal together before you commit.</span></div>
       </div>
       <div class="socials">
-        <a href="https://www.linkedin.com/in/emmanueljamesthedataguy/" target="_blank" rel="noopener"><span>LinkedIn<small>emmanueljamesthedataguy</small></span>&nearr;</a>
-        <a href="https://www.tiktok.com/@emmanueljamesthedataguy" target="_blank" rel="noopener"><span>TikTok<small>@emmanueljamesthedataguy</small></span>&nearr;</a>
-        <a href="https://www.instagram.com/emmanueljamesthedataguy/" target="_blank" rel="noopener"><span>Instagram<small>@emmanueljamesthedataguy</small></span>&nearr;</a>
-        <a href="https://github.com/codrjay" target="_blank" rel="noopener"><span>GitHub<small>codrjay</small></span>&nearr;</a>
-        <a class="wide" href="https://chat.whatsapp.com/IhQsej9HvDb62p4PbAc8ne?mode=gi_t" target="_blank" rel="noopener"><span>Free WhatsApp community<small>Business owners learning to use their numbers</small></span>&nearr;</a>
+        <a href="https://www.linkedin.com/in/emmanueljamesthedataguy/" target="_blank" rel="noopener"><span class="lbl"><i class="soc" style="background:#0A66C2" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></i><span>LinkedIn<small>emmanueljamesthedataguy</small></span></span>&nearr;</a>
+        <a href="https://www.tiktok.com/@emmanueljamesthedataguy" target="_blank" rel="noopener"><span class="lbl"><i class="soc" style="background:#111" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></i><span>TikTok<small>@emmanueljamesthedataguy</small></span></span>&nearr;</a>
+        <a href="https://www.instagram.com/emmanueljamesthedataguy/" target="_blank" rel="noopener"><span class="lbl"><i class="soc" style="background:linear-gradient(45deg,#F9A03C,#E1306C 55%,#7A3FD0)" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></i><span>Instagram<small>@emmanueljamesthedataguy</small></span></span>&nearr;</a>
+        <a href="https://github.com/codrjay" target="_blank" rel="noopener"><span class="lbl"><i class="soc" style="background:#2B3137" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></i><span>GitHub<small>codrjay</small></span></span>&nearr;</a>
+        <a class="wide" href="https://chat.whatsapp.com/IhQsej9HvDb62p4PbAc8ne?mode=gi_t" target="_blank" rel="noopener"><span class="lbl"><i class="soc" style="background:#25D366" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></i><span>Free WhatsApp community<small>Business owners learning to use their numbers</small></span></span>&nearr;</a>
       </div>
     </div>
     <footer>
@@ -916,16 +989,19 @@ document.addEventListener("DOMContentLoaded",function(){ document.querySelectorA
   setTimeout(function(){ del=true; tick(); },2600);
 })();
 /* TESTIMONIALS. To add one: copy a line in TESTI, change the image path, name and company, drop the screenshot in assets/.
+   Stars: add stars:5 (1 to 5) to a line ONLY when that client really gave that rating. No stars field, no stars shown.
    A card with an empty name or company stays hidden, and the whole section hides if no card is ready. */
 var TESTI = [
-  {img:"assets/testimonial-1.webp", name:"Elizabeth Adesola", role:"CEO and Founder", company:"Capstone Travels and Tours Limited", alt:"WhatsApp message from a client saying working with me has been seamless and impactful, and that the apps were well tailored to their accounting needs."}
+  {img:"assets/testimonial-1.webp", name:"Elizabeth Adesola", stars:5, role:"CEO and Founder", company:"Capstone Travels and Tours Limited", alt:"WhatsApp message from a client saying working with me has been seamless and impactful, and that the apps were well tailored to their accounting needs."}
 ];
 (function(){
   var ok = TESTI.filter(function(t){ return t.img && t.name && t.company; });
   var sec = document.getElementById("testimonials"), tr = document.getElementById("testiTrack");
   if(!sec || !tr || !ok.length) return;
   tr.innerHTML = ok.map(function(t){
-    return '<figure class="testi-card"><img src="'+t.img+'" alt="'+(t.alt||("WhatsApp message from "+t.name))+'" loading="lazy"><figcaption><b>'+t.name+'</b><span>'+(t.role?t.role+', ':'')+t.company+'</span></figcaption></figure>';
+    var st = (t.stars>=1 && t.stars<=5) ? Math.round(t.stars) : 0;
+    var stars = st ? '<span class="stars" role="img" aria-label="Rated '+st+' out of 5">'+[1,2,3,4,5].map(function(n){ return '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z" fill="'+(n<=st?'#F5B301':'none')+'" stroke="#F5B301" stroke-width="1.5" stroke-linejoin="round"/></svg>'; }).join("")+'</span>' : '';
+    return '<figure class="testi-card"><img src="'+t.img+'" alt="'+(t.alt||("WhatsApp message from "+t.name))+'" loading="lazy"><figcaption>'+stars+'<b>'+t.name+'</b><span>'+(t.role?t.role+', ':'')+t.company+'</span></figcaption></figure>';
   }).join("");
   sec.hidden = false;
   if(ok.length < 2) return;
@@ -940,6 +1016,23 @@ var TESTI = [
   tr.addEventListener("scroll", function(){ window.requestAnimationFrame(mark); }, {passive:true});
   mark();
 })();
+/* TOOL LOGOS: small marks beside tool names. Add a tag text to TOOLMAP to give it a logo. */
+var TOOLICON = {"python":{"c":"#3776AB","d":"M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"},"supabase":{"c":"#3FCF8E","d":"M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"},"nextdotjs":{"c":"currentColor","d":"M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"},"typescript":{"c":"#3178C6","d":"M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"},"javascript":{"c":"#D9B800","d":"M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"},"html5":{"c":"#E34F26","d":"M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"},"react":{"c":"#149ECA","d":"M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"},"nestjs":{"c":"#E0234E","d":"M14.131.047c-.173 0-.334.037-.483.087.316.21.49.49.576.806.007.043.019.074.025.117a.681.681 0 0 1 .013.112c.024.545-.143.614-.26.936-.18.415-.13.861.086 1.22a.74.74 0 0 0 .074.137c-.235-1.568 1.073-1.803 1.314-2.293.019-.428-.334-.713-.613-.911a1.37 1.37 0 0 0-.732-.21zM16.102.4c-.024.143-.006.106-.012.18-.006.05-.006.112-.012.161-.013.05-.025.1-.044.149-.012.05-.03.1-.05.149l-.067.142c-.02.025-.031.05-.05.075l-.037.055a2.152 2.152 0 0 1-.093.124c-.037.038-.068.081-.112.112v.006c-.037.031-.074.068-.118.1-.13.099-.278.173-.415.266-.043.03-.087.056-.124.093a.906.906 0 0 0-.118.099c-.043.037-.074.074-.111.118-.031.037-.068.08-.093.124a1.582 1.582 0 0 0-.087.13c-.025.05-.043.093-.068.142-.019.05-.037.093-.05.143a2.007 2.007 0 0 0-.043.155c-.006.025-.006.056-.012.08-.007.025-.007.05-.013.075 0 .05-.006.105-.006.155 0 .037 0 .074.006.111 0 .05.006.1.019.155.006.05.018.1.03.15.02.049.032.098.05.148.013.03.031.062.044.087l-1.426-.552c-.241-.068-.477-.13-.719-.186l-.39-.093c-.372-.074-.75-.13-1.128-.167-.013 0-.019-.006-.031-.006A11.082 11.082 0 0 0 8.9 2.855c-.378.025-.756.074-1.134.136a12.45 12.45 0 0 0-.837.174l-.279.074c-.092.037-.18.08-.266.118l-.205.093c-.012.006-.024.006-.03.012-.063.031-.118.056-.174.087a2.738 2.738 0 0 0-.236.118c-.043.018-.086.043-.124.062a.559.559 0 0 1-.055.03c-.056.032-.112.063-.162.094a1.56 1.56 0 0 0-.148.093c-.044.03-.087.055-.124.086-.006.007-.013.007-.019.013-.037.025-.08.056-.118.087l-.012.012-.093.074c-.012.007-.025.019-.037.025-.031.025-.062.056-.093.08-.006.013-.019.02-.025.025-.037.038-.074.069-.111.106-.007 0-.007.006-.013.012a1.742 1.742 0 0 0-.111.106c-.007.006-.007.012-.013.012a1.454 1.454 0 0 0-.093.1c-.012.012-.03.024-.043.036a1.374 1.374 0 0 1-.106.112c-.006.012-.018.019-.024.03-.05.05-.093.1-.143.15l-.018.018c-.1.106-.205.211-.317.304-.111.1-.229.192-.347.273a3.777 3.777 0 0 1-.762.421c-.13.056-.267.106-.403.149-.26.056-.527.161-.756.18-.05 0-.105.012-.155.018l-.155.037-.149.056c-.05.019-.099.044-.148.068-.044.031-.093.056-.137.087a1.011 1.011 0 0 0-.124.106c-.043.03-.087.074-.124.111-.037.043-.074.08-.105.124-.031.05-.068.093-.093.143a1.092 1.092 0 0 0-.087.142c-.025.056-.05.106-.068.161-.019.05-.037.106-.056.161-.012.05-.025.1-.03.15 0 .005-.007.012-.007.018-.012.056-.012.13-.019.167C.006 7.95 0 7.986 0 8.03a.657.657 0 0 0 .074.31v.006c.019.037.044.075.069.112.024.037.05.074.08.111.031.031.068.069.106.1a.906.906 0 0 0 .117.099c.149.13.186.173.378.272.031.019.062.031.1.05.006 0 .012.006.018.006 0 .013 0 .019.006.031a1.272 1.272 0 0 0 .08.298c.02.037.032.074.05.111.007.013.013.025.02.031.024.05.049.093.073.137l.093.13c.031.037.069.08.106.118.037.037.074.068.118.105 0 0 .006.006.012.006.037.031.074.062.112.087a.986.986 0 0 0 .136.08c.043.025.093.05.142.069a.73.73 0 0 0 .124.043c.007.006.013.006.025.012.025.007.056.013.08.019-.018.335-.024.65.026.762.055.124.328-.254.6-.688-.036.428-.061.93 0 1.079.069.155.44-.329.763-.862 4.395-1.016 8.405 2.02 8.826 6.31-.08-.67-.905-1.041-1.283-.948-.186.458-.502 1.047-1.01 1.413.043-.41.025-.83-.062-1.24a4.009 4.009 0 0 1-.769 1.562c-.588.043-1.177-.242-1.487-.67-.025-.018-.031-.055-.05-.08-.018-.043-.037-.087-.05-.13a.515.515 0 0 1-.037-.13c-.006-.044-.006-.087-.006-.137v-.093a.992.992 0 0 1 .031-.13c.013-.043.025-.086.044-.13.024-.043.043-.087.074-.13.105-.298.105-.54-.087-.682a.706.706 0 0 0-.118-.062c-.024-.006-.055-.018-.08-.025l-.05-.018a.847.847 0 0 0-.13-.031.472.472 0 0 0-.13-.019 1.01 1.01 0 0 0-.136-.012c-.031 0-.062.006-.093.006a.484.484 0 0 0-.137.019c-.043.006-.086.012-.13.024a1.068 1.068 0 0 0-.13.044c-.043.018-.08.037-.124.056-.037.018-.074.043-.118.062-1.444.942-.582 3.148.403 3.787-.372.068-.75.148-.855.229l-.013.012c.267.161.546.298.837.416.397.13.818.247 1.004.297v.006a5.996 5.996 0 0 0 1.562.112c2.746-.192 4.996-2.281 5.405-5.033l.037.161c.019.112.043.23.056.347v.006c.012.056.018.112.025.162v.024c.006.056.012.112.012.162.006.068.012.136.012.204v.1c0 .03.007.067.007.098 0 .038-.007.075-.007.112v.087c0 .043-.006.08-.006.124 0 .025 0 .05-.006.08 0 .044-.006.087-.006.137-.006.018-.006.037-.006.055l-.02.143c0 .019 0 .037-.005.056-.007.062-.019.118-.025.18v.012l-.037.174v.018l-.037.167c0 .007-.007.02-.007.025a1.663 1.663 0 0 1-.043.168v.018c-.019.062-.037.118-.05.174-.006.006-.006.012-.006.012l-.056.186c-.024.062-.043.118-.068.18-.025.062-.043.124-.068.18-.025.062-.05.117-.074.18h-.007c-.024.055-.05.117-.08.173a.302.302 0 0 1-.019.043c-.006.006-.006.013-.012.019a5.867 5.867 0 0 1-1.742 2.082c-.05.031-.099.069-.149.106-.012.012-.03.018-.043.03a2.603 2.603 0 0 1-.136.094l.018.037h.007l.26-.037h.006c.161-.025.322-.056.483-.087.044-.006.093-.019.137-.031l.087-.019c.043-.006.086-.018.13-.024.037-.013.074-.02.111-.031.62-.15 1.221-.354 1.798-.595a9.926 9.926 0 0 1-3.85 3.142c.714-.05 1.426-.167 2.114-.366a9.903 9.903 0 0 0 5.857-4.68 9.893 9.893 0 0 1-1.667 3.986 9.758 9.758 0 0 0 1.655-1.376 9.824 9.824 0 0 0 2.61-5.268c.21.98.272 1.99.18 2.987 4.474-6.241.371-12.712-1.346-14.416-.006-.013-.012-.019-.012-.031-.006.006-.006.006-.006.012 0-.006 0-.006-.007-.012 0 .074-.006.148-.012.223a8.34 8.34 0 0 1-.062.415c-.03.136-.068.273-.105.41-.044.13-.093.266-.15.396a5.322 5.322 0 0 1-.185.378 4.735 4.735 0 0 1-.477.688c-.093.111-.192.21-.292.31a3.994 3.994 0 0 1-.18.155l-.142.124a3.459 3.459 0 0 1-.347.241 4.295 4.295 0 0 1-.366.211c-.13.062-.26.118-.39.174a4.364 4.364 0 0 1-.818.223c-.143.025-.285.037-.422.05a4.914 4.914 0 0 1-.297.012 4.66 4.66 0 0 1-.422-.025 3.137 3.137 0 0 1-.421-.062 3.136 3.136 0 0 1-.415-.105h-.007c.137-.013.273-.025.41-.05a4.493 4.493 0 0 0 .818-.223c.136-.05.266-.112.39-.174.13-.062.248-.13.372-.204.118-.08.235-.161.347-.248.112-.087.217-.18.316-.279.105-.093.198-.198.291-.304.093-.111.18-.223.26-.334.013-.019.026-.044.038-.062.062-.1.124-.199.18-.298a4.272 4.272 0 0 0 .334-.775c.044-.13.075-.266.106-.403.025-.142.05-.278.062-.415.012-.142.025-.285.025-.421 0-.1-.007-.199-.013-.298a6.726 6.726 0 0 0-.05-.415 4.493 4.493 0 0 0-.092-.415c-.044-.13-.087-.267-.137-.397-.05-.13-.111-.26-.173-.384-.069-.124-.137-.248-.211-.366a6.843 6.843 0 0 0-.248-.34c-.093-.106-.186-.212-.285-.317a3.878 3.878 0 0 0-.161-.155c-.28-.217-.57-.421-.862-.607a1.154 1.154 0 0 0-.124-.062 2.415 2.415 0 0 0-.589-.26Z"},"googlesheets":{"c":"#34A853","d":"M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"},"googleappsscript":{"c":"#4285F4","d":"M12.363 2.54a3.136 3.136 0 0 0-.376.022 2.864 2.864 0 0 0-1.589.828c-.562.58-.82 1.115-.773 1.943-.01.264.193 1.023.272 1.274 1.115 3.546 2.09 6.75 3.26 10.279.08.246.168.486.267.72.02.047.035.046.048-.004.077-.297.174-.612.29-.945.894-2.576 1.772-5.14 2.633-7.696a.345.345 0 0 0 .004-.217 163.054 163.054 0 0 0-1.49-4.572 2.603 2.603 0 0 0-.704-.933c-.55-.46-1.166-.694-1.842-.7Zm9.078.117a2.734 2.734 0 0 0-2.878 1.828l-4.576 13.289a2.734 2.734 0 0 0 1.695 3.475l.12.04a2.734 2.734 0 0 0 3.475-1.694L23.85 6.307a2.734 2.734 0 0 0-1.695-3.476c-.233-.1-.506-.124-.716-.174ZM12.375 3.96a1.396 1.396 0 1 1 0 2.791 1.395 1.395 0 0 1 0-2.79zm8.809.07a1.402 1.402 0 1 1 0 2.803 1.402 1.402 0 0 1 0-2.803zM5.419 7.605a2.853 2.853 0 0 0-.468.052 2.683 2.683 0 0 0-1.337.627 2.62 2.62 0 0 0-.924 1.833 3.808 3.808 0 0 0 0 .648 2.52 2.52 0 0 0 .673 1.52c.221.238.465.454.732.648 3.043 2.21 6.08 4.43 9.108 6.664a.78.78 0 0 0 .158.089c.03-.043.032-.098.007-.167a17.409 17.409 0 0 0-.317-1.066 532.752 532.752 0 0 1-2.02-6.251 41.91 41.91 0 0 0-.497-1.477c-.967-.849-2.078-1.6-3.023-2.302A3.848 3.848 0 0 0 6.153 7.7a2.388 2.388 0 0 0-.734-.094Zm.02 1.424a1.398 1.398 0 1 1 0 2.796 1.398 1.398 0 0 1 0-2.796zm-2.458 6.792c-.733-.006-1.375.202-1.927.622a2.72 2.72 0 0 0-.95 1.45 2.78 2.78 0 0 0-.09 1.04 2.74 2.74 0 0 0 .695 1.583c.664.578 1.26.85 2 .945 1.42-.005 2.84-.012 4.262-.02h.418c2.277-.003 4.513-.002 6.706.003.148.005.28.003.392-.01.06-.005.091-.031.092-.077a10.656 10.656 0 0 0-.834-.653 488.746 488.746 0 0 1-6.57-4.815.236.236 0 0 0-.14-.047c-1.34-.003-2.691-.01-4.054-.02zm-.19 1.418a1.402 1.402 0 1 1 0 2.803 1.402 1.402 0 0 1 0-2.803zm13.874.002a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z"},"dbt":{"c":"#FF694B","d":"M17.9004 9.3763a8.1488 8.1488 0 0 0-3.0421-3.1206l1.7708.8385a10.2874 10.2874 0 0 1 3.74 3.0007l3.234-5.9295a2.8546 2.8546 0 0 0-.0611-2.9604C22.7566.0371 21.2112-.3409 19.9754.3327l-5.8749 3.2101a4.3612 4.3612 0 0 1-4.1761 0L4.1769.408a2.8545 2.8545 0 0 0-2.9592.0632c-1.1673.7853-1.5452 2.33-.8723 3.5655L3.55 9.9106a4.3612 4.3612 0 0 1 0 4.1772l-3.1272 5.743a2.86 2.86 0 0 0 .085 2.9974c.794 1.1438 2.3225 1.5054 3.5448.8385l6.0581-3.3049a10.2877 10.2877 0 0 1-3.0051-3.7454l-.8374-1.7708a8.148 8.148 0 0 0 3.1206 3.0421l10.5832 5.779c1.2213.666 2.7481.3055 3.5426-.8363a2.8699 2.8699 0 0 0 .0796-3.0018L17.9004 9.3763zm3.3801-7.7351c.6022 0 1.0904.4882 1.0904 1.0904s-.4882 1.0904-1.0904 1.0904-1.0904-.4882-1.0904-1.0904.4882-1.0904 1.0904-1.0904zM2.7442 3.822c-.6022 0-1.0904-.4882-1.0904-1.0904s.4882-1.0904 1.0904-1.0904 1.0904.4882 1.0904 1.0904S3.3464 3.822 2.7442 3.822zm0 18.5363c-.6022 0-1.0904-.4882-1.0904-1.0904 0-.6022.4882-1.0904 1.0904-1.0904s1.0904.4882 1.0904 1.0904c0 .6022-.4882 1.0904-1.0904 1.0904zm10.3585-11.4489c-1.2008-.0035-2.177.9672-2.1805 2.1679a2.1738 2.1738 0 0 0 .7052 1.6091c-1.4872-.2091-2.5234-1.5843-2.3142-3.0716.2091-1.4872 1.5843-2.5234 3.0716-2.3142a2.7194 2.7194 0 0 1 2.3142 2.3142 2.1623 2.1623 0 0 0-1.5963-.7054zm8.1778 11.4489c-.6022 0-1.0904-.4882-1.0904-1.0904 0-.6022.4882-1.0904 1.0904-1.0904s1.0904.4882 1.0904 1.0904c0 .6022-.4882 1.0904-1.0904 1.0904z"},"n8n":{"c":"#EA4B71","d":"M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632"},"postgresql":{"c":"#4169E1","d":"M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191c-.139-.2632-.4768-.3418-1.0074-.2321-1.6533.3411-2.2935.1312-2.5256-.0191 1.342-2.0482 2.445-4.522 3.0411-6.8297.2714-1.0507.7982-3.5237.1222-4.7316a1.5641 1.5641 0 0 0-.1509-.235C21.6931.9086 19.8007.0248 17.5099.0005c-1.4947-.0158-2.7705.3461-3.1161.4794a9.449 9.449 0 0 0-.5159-.0816 8.044 8.044 0 0 0-1.3114-.1278c-1.1822-.0184-2.2038.2642-3.0498.8406-.8573-.3211-4.7888-1.645-7.2219.0788C.9359 2.1526.3086 3.8733.4302 6.3043c.0409.818.5069 3.334 1.2423 5.7436.4598 1.5065.9387 2.7019 1.4334 3.582.553.9942 1.1259 1.5933 1.7143 1.7895.4474.1491 1.1327.1441 1.8581-.7279.8012-.9635 1.5903-1.8258 1.9446-2.2069.4351.2355.9064.3625 1.39.3772a.0569.0569 0 0 0 .0004.0041 11.0312 11.0312 0 0 0-.2472.3054c-.3389.4302-.4094.5197-1.5002.7443-.3102.064-1.1344.2339-1.1464.8115-.0025.1224.0329.2309.0919.3268.2269.4231.9216.6097 1.015.6331 1.3345.3335 2.5044.092 3.3714-.6787-.017 2.231.0775 4.4174.3454 5.0874.2212.5529.7618 1.9045 2.4692 1.9043.2505 0 .5263-.0291.8296-.0941 1.7819-.3821 2.5557-1.1696 2.855-2.9059.1503-.8707.4016-2.8753.5388-4.1012.0169-.0703.0357-.1207.057-.1362.0007-.0005.0697-.0471.4272.0307a.3673.3673 0 0 0 .0443.0068l.2539.0223.0149.001c.8468.0384 1.9114-.1426 2.5312-.4308.6438-.2988 1.8057-1.0323 1.5951-1.6698zM2.371 11.8765c-.7435-2.4358-1.1779-4.8851-1.2123-5.5719-.1086-2.1714.4171-3.6829 1.5623-4.4927 1.8367-1.2986 4.8398-.5408 6.108-.13-.0032.0032-.0066.0061-.0098.0094-2.0238 2.044-1.9758 5.536-1.9708 5.7495-.0002.0823.0066.1989.0162.3593.0348.5873.0996 1.6804-.0735 2.9184-.1609 1.1504.1937 2.2764.9728 3.0892.0806.0841.1648.1631.2518.2374-.3468.3714-1.1004 1.1926-1.9025 2.1576-.5677.6825-.9597.5517-1.0886.5087-.3919-.1307-.813-.5871-1.2381-1.3223-.4796-.839-.9635-2.0317-1.4155-3.5126zm6.0072 5.0871c-.1711-.0428-.3271-.1132-.4322-.1772.0889-.0394.2374-.0902.4833-.1409 1.2833-.2641 1.4815-.4506 1.9143-1.0002.0992-.126.2116-.2687.3673-.4426a.3549.3549 0 0 0 .0737-.1298c.1708-.1513.2724-.1099.4369-.0417.156.0646.3078.26.3695.4752.0291.1016.0619.2945-.0452.4444-.9043 1.2658-2.2216 1.2494-3.1676 1.0128zm2.094-3.988-.0525.141c-.133.3566-.2567.6881-.3334 1.003-.6674-.0021-1.3168-.2872-1.8105-.8024-.6279-.6551-.9131-1.5664-.7825-2.5004.1828-1.3079.1153-2.4468.079-3.0586-.005-.0857-.0095-.1607-.0122-.2199.2957-.2621 1.6659-.9962 2.6429-.7724.4459.1022.7176.4057.8305.928.5846 2.7038.0774 3.8307-.3302 4.7363-.084.1866-.1633.3629-.2311.5454zm7.3637 4.5725c-.0169.1768-.0358.376-.0618.5959l-.146.4383a.3547.3547 0 0 0-.0182.1077c-.0059.4747-.054.6489-.115.8693-.0634.2292-.1353.4891-.1794 1.0575-.11 1.4143-.8782 2.2267-2.4172 2.5565-1.5155.3251-1.7843-.4968-2.0212-1.2217a6.5824 6.5824 0 0 0-.0769-.2266c-.2154-.5858-.1911-1.4119-.1574-2.5551.0165-.5612-.0249-1.9013-.3302-2.6462.0044-.2932.0106-.5909.019-.8918a.3529.3529 0 0 0-.0153-.1126 1.4927 1.4927 0 0 0-.0439-.208c-.1226-.4283-.4213-.7866-.7797-.9351-.1424-.059-.4038-.1672-.7178-.0869.067-.276.1831-.5875.309-.9249l.0529-.142c.0595-.16.134-.3257.213-.5012.4265-.9476 1.0106-2.2453.3766-5.1772-.2374-1.0981-1.0304-1.6343-2.2324-1.5098-.7207.0746-1.3799.3654-1.7088.5321a5.6716 5.6716 0 0 0-.1958.1041c.0918-1.1064.4386-3.1741 1.7357-4.4823a4.0306 4.0306 0 0 1 .3033-.276.3532.3532 0 0 0 .1447-.0644c.7524-.5706 1.6945-.8506 2.802-.8325.4091.0067.8017.0339 1.1742.081 1.939.3544 3.2439 1.4468 4.0359 2.3827.8143.9623 1.2552 1.9315 1.4312 2.4543-1.3232-.1346-2.2234.1268-2.6797.779-.9926 1.4189.543 4.1729 1.2811 5.4964.1353.2426.2522.4522.2889.5413.2403.5825.5515.9713.7787 1.2552.0696.087.1372.1714.1885.245-.4008.1155-1.1208.3825-1.0552 1.717-.0123.1563-.0423.4469-.0834.8148-.0461.2077-.0702.4603-.0994.7662zm.8905-1.6211c-.0405-.8316.2691-.9185.5967-1.0105a2.8566 2.8566 0 0 0 .135-.0406 1.202 1.202 0 0 0 .1342.103c.5703.3765 1.5823.4213 3.0068.1344-.2016.1769-.5189.3994-.9533.6011-.4098.1903-1.0957.333-1.7473.3636-.7197.0336-1.0859-.0807-1.1721-.151zm.5695-9.2712c-.0059.3508-.0542.6692-.1054 1.0017-.055.3576-.112.7274-.1264 1.1762-.0142.4368.0404.8909.0932 1.3301.1066.887.216 1.8003-.2075 2.7014a3.5272 3.5272 0 0 1-.1876-.3856c-.0527-.1276-.1669-.3326-.3251-.6162-.6156-1.1041-2.0574-3.6896-1.3193-4.7446.3795-.5427 1.3408-.5661 2.1781-.463zm.2284 7.0137a12.3762 12.3762 0 0 0-.0853-.1074l-.0355-.0444c.7262-1.1995.5842-2.3862.4578-3.4385-.0519-.4318-.1009-.8396-.0885-1.2226.0129-.4061.0666-.7543.1185-1.0911.0639-.415.1288-.8443.1109-1.3505.0134-.0531.0188-.1158.0118-.1902-.0457-.4855-.5999-1.938-1.7294-3.253-.6076-.7073-1.4896-1.4972-2.6889-2.0395.5251-.1066 1.2328-.2035 2.0244-.1859 2.0515.0456 3.6746.8135 4.8242 2.2824a.908.908 0 0 1 .0667.1002c.7231 1.3556-.2762 6.2751-2.9867 10.5405zm-8.8166-6.1162c-.025.1794-.3089.4225-.6211.4225a.5821.5821 0 0 1-.0809-.0056c-.1873-.026-.3765-.144-.5059-.3156-.0458-.0605-.1203-.178-.1055-.2844.0055-.0401.0261-.0985.0925-.1488.1182-.0894.3518-.1226.6096-.0867.3163.0441.6426.1938.6113.4186zm7.9305-.4114c.0111.0792-.049.201-.1531.3102-.0683.0717-.212.1961-.4079.2232a.5456.5456 0 0 1-.075.0052c-.2935 0-.5414-.2344-.5607-.3717-.024-.1765.2641-.3106.5611-.352.297-.0414.6111.0088.6356.1851z"},"excel":{"svg":"<rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"4\" fill=\"#1D6F42\"/><path d=\"M7.6 7.4l8.8 9.2M16.4 7.4l-8.8 9.2\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" fill=\"none\"/>"},"powerbi":{"svg":"<rect x=\"3.5\" y=\"12\" width=\"4.4\" height=\"8.5\" rx=\"1.2\" fill=\"#F2C811\"/><rect x=\"9.8\" y=\"7\" width=\"4.4\" height=\"13.5\" rx=\"1.2\" fill=\"#E8A900\"/><rect x=\"16.1\" y=\"3\" width=\"4.4\" height=\"17.5\" rx=\"1.2\" fill=\"#C98A00\"/>"},"sql":{"svg":"<g fill=\"none\" stroke=\"#0B6FC4\" stroke-width=\"1.8\" stroke-linecap=\"round\"><ellipse cx=\"12\" cy=\"6\" rx=\"7\" ry=\"3\"/><path d=\"M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3\"/></g>"}};
+var TOOLMAP = {"power bi":"powerbi","power query":"powerbi","dax":"powerbi","html in dax":"powerbi","excel and vba":"excel","excel":"excel","google sheets":"googlesheets","apps script":"googleappsscript","html, css, javascript":"javascript","javascript":"javascript","next.js":"nextdotjs","typescript":"typescript","supabase":"supabase","react and nestjs":"react","python":"python","sql":"sql","postgres":"postgresql","dbt and data warehousing":"dbt","n8n automation":"n8n"};
+function iconFor(k){
+  var i = TOOLICON[k]; if(!i) return "";
+  var inner = i.svg ? i.svg : '<path fill="'+i.c+'" d="'+i.d+'"/>';
+  return '<svg class="ti" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false">'+inner+'</svg>';
+}
+function decorateTags(root){
+  Array.prototype.forEach.call((root||document).querySelectorAll(".tag:not([data-ti])"), function(el){
+    el.setAttribute("data-ti","1");
+    var k = TOOLMAP[el.textContent.trim().toLowerCase()];
+    if(k){ el.insertAdjacentHTML("afterbegin", iconFor(k)); el.classList.add("has-ti"); }
+  });
+}
+decorateTags();
+new MutationObserver(function(){ decorateTags(); }).observe(document.body,{childList:true,subtree:true});
 var COMMUNITY = "https://chat.whatsapp.com/IhQsej9HvDb62p4PbAc8ne?mode=gi_t";
 
 var check = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#1A8AE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -955,53 +1048,72 @@ var ASSURE = {
   "launchpad":"A past mentee passed their analytics assessment and landed the role they wanted.",
   "elite":"For job seekers who want proof of work, not just certificates."};
 var SHOP = [
-  {id:"quick-win", for:"Business owners with one clear problem and a small budget.", pain:"You cannot see the real health of your business: who owes you, what is left in stock, or what you really earned.", time:"1 to 2 weeks", hook:["Full visibility of your business health, from your own records","Ready in 1 to 2 weeks, in the Excel or Google Sheets you already use","We walk through it together, so your team uses it from day one"], cat:"build", name:"Quick Win", usd:79, from:true,
-   pitch:"See how healthy your business really is.",
-   best:"An owner with one clear problem and a small budget.",
+  {id:"quick-win", tools:["Excel", "Google Sheets"], for:"Business owner who cannot tell who owes them, what is left in stock or what they really earned, and is afraid money is leaking without them noticing.", pain:"Replaces guessing in one area, such as debtors, stock, or sales and profit, with a weekly tracker built on your own records.", time:"1 to 2 weeks", hook:["One tracker for one area, set up with your own data, not a blank template", "Built in Excel or Google Sheets, whichever you already use", "One page guide, a walkthrough call and one round of changes"], cat:"build", name:"Quick Win", usd:79, from:true,
+   pitch:"One tracker for the one area you are guessing.",
+   best:"Business owner who cannot tell who owes them, what is left in stock or what they really earned, and is afraid money is leaking without them noticing.",
    get:["One Excel or Google Sheets tracker for one area, such as debtors, stock, or sales and profit","Set up with your own data, not a blank template","A one page instruction sheet your team can follow","A walkthrough call to show you how to use it","One round of revisions"],
    how:[["Step 1","Discovery call to pick the one area that hurts most"],["Step 2","I build the tracker around how you already work"],["Step 3","Walkthrough call and handover"]],
    facts:[["Timeline","1 to 2 weeks"],["Format","Excel or Google Sheets"],["Revisions","One round"],["Limits","One area, no dashboard"]],
-   result:"Full visibility of your business health, every week."},
-  {id:"decision-dashboard", for:"Owners whose records are scattered and who are not sure the business is truly profitable.", pain:"Sales look fine, but you cannot tell if the business is making money, or where it leaks.", time:"3 to 5 weeks", hook:["Answers the 4 questions that keep owners up: am I making money, where is it leaking, what really pays, where is my cash","Every chart explained in plain words. No data skills needed","Your team trained, plus a 30 day check-in so it sticks"], cat:"build", name:"Decision Dashboard", usd:279, from:true, feat:true,
-   pitch:"Know if the business is really making money.",
-   best:"An owner whose records are everywhere and who isn’t sure the business is profitable.",
-   get:["2 to 3 connected trackers feeding one dashboard","Answers the big four: are we making money, where are we losing it, which products, services and customers matter, and what is happening to cash","Power BI or a web dashboard, whichever suits your team","A plain language explainer under every chart","A training session for you and your team","A check in 30 days after handover"],
+   result:"Full visibility of your business health in that area, every week."},
+  {id:"decision-dashboard", tools:["Power BI", "Power Query", "Excel", "Google Sheets"], for:"Business owner who cannot tell if the business is truly profitable because the records sit in different places, and is afraid of making big decisions on a wrong number.", pain:"Shows whether the business makes money, where it leaks, which products, services and customers pay, and what is happening to cash.", time:"3 to 5 weeks", hook:["A Power BI or web dashboard, your choice, built from your own records", "Answers four questions: are we making money, where are we losing it, what pays, where is the cash", "Scheduled refresh and emailed reports, plain language notes, training, 30 day check in"], cat:"build", name:"Decision Dashboard", usd:279, from:true, feat:true,
+   pitch:"One dashboard that shows if you are really making money.",
+   best:"Business owner who cannot tell if the business is truly profitable because the records sit in different places, and is afraid of making big decisions on a wrong number.",
+   get:["2 to 3 trackers in Excel or Google Sheets that feed one dashboard, so new data goes in one place", "Your data cleaned and connected with Power Query", "One dashboard, in Power BI or as a web dashboard, whichever you choose, answering four questions: Are we making money? Where are we losing it? Which products, services and customers matter? What is happening to cash?", "Automations: your data refreshes on a schedule, and a summary report is emailed to you on the schedule you choose", "A plain language note under every chart", "A training session for you and your team", "A check in 30 days after handover"],
    how:[["Step 1","Discovery call and a look at your current records"],["Step 2","Clean up and connect your data"],["Step 3","Build the dashboard and review it together"],["Step 4","Training, handover and a 30 day check in"]],
-   facts:[["Timeline","3 to 5 weeks"],["Format","Power BI or web dashboard"],["Training","Included"],["Follow up","30 day check in"]],
+   facts:[["Timeline", "3 to 5 weeks"], ["Dashboard", "Power BI or web, your choice"], ["Data", "2 to 3 Excel or Google Sheets trackers"], ["Automation", "Scheduled refresh, emailed reports"], ["Training", "Included"], ["Follow up", "30 day check in"]],
    result:"Monthly decisions based on real profit, not just sales."},
-  {id:"full-build", for:"Owners ready to grow, with a team that needs one system.", pain:"Sales, stock, credits and expenses live in notebooks, chats and spreadsheets, and nobody can find the true numbers.", time:"6 to 10 weeks", hook:["Your own app for sales, stock, credits and expenses, built to the ShopBoss standard you can try free above","Separate logins: you see everything, staff see only what they need","60 days of support and a monthly review of your numbers"], cat:"build", name:"Full Business Build", usd:999, from:true,
-   pitch:"One place to run and question the whole business.",
-   best:"An owner ready to grow, who needs a system the whole team can use.",
-   get:["A custom web app in the style of ShopBoss: sales, inventory, credits, expenses and a KPI dashboard","Separate admin and staff access","A process mapping session before anything is built","Training for you and your team","60 days of support after launch","A monthly insight review of your numbers"],
-   how:[["Step 1","Process mapping session"],["Step 2","Scope agreed on a proposal review call"],["Step 3","Built in stages, with check ins"],["Step 4","Launch, training and 60 days of support"]],
-   facts:[["Timeline","6 to 10 weeks"],["Format","Web app with logins"],["Support","60 days"],["Insight review","Monthly"]],
-   result:"Your business runs on a system you can question any time."},
-  {id:"clarity", for:"Learners and analysts jumping between courses, or whose CV, LinkedIn or portfolio is not getting replies.", pain:"You study a lot but have no direction, and your profile does not show what you can do.", time:"One 60 to 90 minute session", hook:["60 to 90 minutes focused only on you and your goals","Your CV, LinkedIn or portfolio corrected point by point","A personal roadmap: what to learn next, and what to skip"], cat:"coach", name:"Clarity Session", ngn:20000,
-   pitch:"Stuck? Get honest feedback and a clear next move.",
-   best:"Someone who has been jumping between courses and needs focus, or whose CV, LinkedIn or portfolio isn’t presenting them well.",
+  {id:"full-build", tools:["Supabase", "JavaScript"], for:"Business owner who cannot get one true view of sales, stock, credits and expenses across the team, and is afraid of losing track of money and stock as the business grows.", pain:"Replaces notebooks, chats and spreadsheets with one app your team logs into, so the numbers are in one place.", time:"6 to 10 weeks", hook:["Sales, stock, credits, expenses, invoices and customers in one web app", "Admin and staff logins, so staff only see what you allow", "Your old records loaded in, your team trained, 30 days of support and a monthly review"], cat:"build", name:"Full Business Build", usd:999, from:true,
+   pitch:"Your own web app for sales, stock, credits and expenses.",
+   best:"Business owner who cannot get one true view of sales, stock, credits and expenses across the team, and is afraid of losing track of money and stock as the business grows.",
+   get:["A custom web app in the style of ShopBoss, that your team opens in the browser", "Sales: every sale recorded, with the profit worked out", "Inventory: stock in and out, a running balance and a reorder level for each product", "Credits: who owes you, part payments and the balance per customer", "Expenses and invoices in the same place as sales", "Customer records, so you know who buys and who owes", "A KPI dashboard with revenue, profit, expenses and credits owed", "Admin and staff logins: staff see only what you allow", "Your business data kept separate from every other business", "Your existing records loaded in from the Excel sheets or notes you give me", "An optional AI assistant that explains totals the app has already checked, never sending customer names", "A process mapping session before anything is built", "Training for you and your team", "30 days of support after launch", "A monthly insight review of your numbers"],
+   addons:[["Full sign-in security set","Email confirmation, forgot password, limits on login attempts, automatic logout when idle and two step verification."],["Data backups","Regular backups of your data. Paid add-on because the database host charges for backups."]],
+   how:[["Step 1","Process mapping session"],["Step 2","Scope agreed on a proposal review call"],["Step 3","Built in stages, with check ins"],["Step 4","Launch, training and 30 days of support"]],
+   facts:[["Timeline", "6 to 10 weeks"], ["Format", "Web app, opened in a browser"], ["Logins", "Admin and staff"], ["Optional add-ons", "Security set, backups"], ["Support", "30 days"], ["Insight review", "Monthly"]],
+   result:"One system that holds your sales, stock, credits and expenses, which you can check any time."},
+  {id:"clarity", tools:[], for:"Learner or analyst who cannot decide what to learn next or why they get no replies, and is afraid of wasting another year on the wrong thing.", pain:"Ends the jumping between courses. You get a roadmap and point by point corrections to your CV, LinkedIn or portfolio.", time:"One 60 to 90 minute session", hook:["One live session of 60 to 90 minutes, only on you and your goals", "Your CV, LinkedIn or portfolio corrected point by point", "A roadmap: what to learn next, and what to skip"], cat:"coach", name:"Clarity Session", ngn:20000,
+   pitch:"One session to decide your next move.",
+   best:"Learner or analyst who cannot decide what to learn next or why they get no replies, and is afraid of wasting another year on the wrong thing.",
    get:["One focused live strategy session, tailored to your level, goals and gaps","CV, portfolio or LinkedIn review with direct correction points","A personalised roadmap: what to learn next, what to postpone, and how to study better","Tool guidance for your target path: BI analysis, dashboards, reporting or entry level analyst roles","Three days of follow up support while you put the advice to work"],
    facts:[["Length","1 session, 60 to 90 minutes"],["Format","Live, online"],["Follow up","3 days"],["Price","One time"]],
    result:"You leave with clarity, a stronger profile and a next step plan you can act on immediately."},
-  {id:"launchpad", for:"People who want structure and one strong project to show.", pain:"You learn alone, have no project to show, and nobody keeps you accountable.", time:"4 weeks", hook:["Finish with a portfolio project you can show in interviews","Weekly live sessions on Excel, SQL and Power BI, built on real business questions","Accountability check-ins and WhatsApp support between sessions"], cat:"coach", name:"Launchpad Mentorship", ngn:60000, feat:true,
-   pitch:"Four weeks, one guided project, real accountability.",
-   best:"Someone who wants structure, accountability and one strong project that improves both skill and visibility.",
+  {id:"launchpad", tools:["Excel", "SQL", "Power BI"], for:"Beginner or career switcher who cannot stay consistent studying alone, and is afraid of walking into interviews with nothing to show.", pain:"Gives you structure and one finished project to show, so you stop learning alone.", time:"4 weeks", hook:["4 weekly live sessions on Excel, SQL and Power BI, built on real business questions", "1 guided portfolio project you can publish and discuss in interviews", "Weekly assignments, check ins and WhatsApp support"], cat:"coach", name:"Launchpad Mentorship", ngn:60000, feat:true,
+   pitch:"Four weeks, one guided project, weekly accountability.",
+   best:"Beginner or career switcher who cannot stay consistent studying alone, and is afraid of walking into interviews with nothing to show.",
    get:["Four live mentorship sessions with a clear weekly structure","Hands on Excel, SQL and Power BI built around real business questions","Weekly assignments and accountability check ins","One guided mini portfolio project you can publish and discuss in interviews","CV and LinkedIn optimisation","WhatsApp support between sessions"],
    how:[["Week 1","Excel foundations, data cleaning habits and business analysis thinking"],["Week 2","SQL basics, querying patterns and thinking through analyst style questions"],["Week 3","Power BI dashboards, visual structure and storytelling"],["Week 4","Portfolio finishing, CV upgrade, LinkedIn polish and interview preparation"]],
    facts:[["Length","4 weeks"],["Sessions","1 live session a week"],["Support","WhatsApp between sessions"],["Project","1 guided portfolio project"]],
    result:"Stronger fundamentals, one visible project, a better profile and more confidence applying."},
-  {id:"elite", for:"People serious about competing for analyst roles.", pain:"You apply for analyst roles with no proof of work and little interview confidence.", time:"8 weeks", hook:["2 to 3 premium portfolio projects, with direct coaching","16 live sessions plus recurring mock interviews","Priority WhatsApp support and weekly job and internship updates"], cat:"coach", name:"Career Accelerator Elite", ngn:150000,
-   pitch:"Eight intensive weeks to become genuinely competitive.",
-   best:"Someone serious about competing for analyst roles, with stronger proof of work and an intentional job search.",
+  {id:"elite", tools:["Excel", "SQL", "Power BI"], for:"Aspiring analyst who cannot get interviews because there is no proof of work, and is afraid of freezing when asked to explain their projects.", pain:"Builds 2 to 3 portfolio projects, mock interviews and a focused job search over 8 weeks.", time:"8 weeks", hook:["16 live sessions: 2 a week for 8 weeks on Excel, SQL and Power BI", "2 to 3 premium portfolio projects, with direct coaching", "Recurring mock interviews, priority WhatsApp support and weekly job updates"], cat:"coach", name:"Career Accelerator Elite", ngn:150000,
+   pitch:"Eight weeks to build proof of work and interview confidence.",
+   best:"Aspiring analyst who cannot get interviews because there is no proof of work, and is afraid of freezing when asked to explain their projects.",
    get:["Sixteen live sessions on Excel, SQL, Power BI, data storytelling and analyst thinking","Two to three premium portfolio projects with direct coaching","Deeper CV, LinkedIn and positioning support for internships, junior analyst and BI roles","Recurring mock interviews with feedback on how you explain your work","Priority WhatsApp support throughout","Curated weekly job and internship updates, and guidance on which roles fit you","Application support: project descriptions, tailored profile, stronger positioning","An introduction to VBA automation and using AI tools for analysis"],
    how:[["Weeks 1 to 2","Excel, data cleaning and solving business questions with structure"],["Weeks 3 to 4","SQL from foundations to applied querying, plus case style thinking"],["Weeks 5 to 6","Power BI, DAX essentials, dashboard design and storytelling"],["Weeks 7 to 8","Portfolio refinement, mock interviews, job updates and application support"]],
    facts:[["Length","8 weeks"],["Sessions","2 live sessions a week"],["Projects","2 to 3 premium projects"],["Support","Priority WhatsApp"]],
    result:"Serious proof of work, interview confidence and a focused, strategic job search."},
-  {id:"cv", pain:"Your CV is not getting replies.", cat:"quick", name:"CV Review", ngn:5000, pitch:"Direct corrections that make your CV land.", best:"Anyone applying for data or BI roles.", get:["A line by line review of your CV","Clear correction points you can apply the same day"], facts:[["Format","Written review"],["Price","One time"]], result:"A CV that presents your skills clearly."},
-  {id:"linkedin", pain:"Your profile does not match the level you are working toward.", cat:"quick", name:"LinkedIn Optimisation", ngn:10000, pitch:"Make your profile match the level you’re building toward.", best:"Analysts who want recruiters and clients to take them seriously.", get:["Review of your headline, about section, experience and featured work","Specific rewrites and improvement points"], facts:[["Format","Review and rewrite points"],["Price","One time"]], result:"A profile that does some of the selling for you."},
-  {id:"portfolio", pain:"Your projects are not getting responses.", cat:"quick", name:"Portfolio Review", ngn:7500, pitch:"Find out what your projects say about you.", best:"Learners with projects who aren’t getting responses.", get:["Feedback on project choice, structure and presentation","What to fix, add or cut"], facts:[["Format","Review session"],["Price","One time"]], result:"A portfolio that shows business thinking, not just tools."},
-  {id:"crash", pain:"One SQL or Excel topic is blocking you.", cat:"quick", name:"SQL or Excel Crash Session", ngn:10000, pitch:"One focused session on the skill you’re stuck on.", best:"Anyone blocked on a specific SQL or Excel topic.", get:["A live session on the topic you choose","Practice examples to keep"], facts:[["Format","1 live session"],["Price","One time"]], result:"You get unstuck and keep moving."},
-  {id:"interview", pain:"You have an interview coming and cannot explain your work clearly.", cat:"quick", name:"Interview Preparation", ngn:12000, pitch:"Practise explaining your work with confidence.", best:"Candidates with an interview coming up.", get:["A mock interview for data and BI roles","Feedback on your answers and how you present projects"], facts:[["Format","1 live session"],["Price","One time"]], result:"You walk in ready to explain your work clearly."},
-  {id:"pbi-help", pain:"A Power BI model, measure or report has you stuck.", cat:"quick", name:"Power BI Project Help", ngn:15000, from:true, pitch:"Hands on help with a Power BI project.", best:"Learners or analysts stuck on a model, DAX measure or report.", get:["Help with your data model, DAX or report design","Explanations so you can do it yourself next time"], facts:[["Format","Live help"],["Price","From N15,000, by scope"]], result:"Your project moves forward and you understand why."}
+  {id:"biz-clarity", biz:true, cat:"quick", name:"Business Clarity Call", usd:39,
+   pitch:"60 minutes on your numbers. Leave knowing what to fix first.",
+   pain:"Walk through your sales and costs with me, and find where money is leaking and what to track first.",
+   for:"Business owner who cannot tell where the profit is going, and is afraid of spending money on the wrong fix.",
+   best:"Business owner who cannot tell where the profit is going, and is afraid of spending money on the wrong fix.",
+   tools:[],
+   get:["One live 60 minute call, only about your business","A look at the sales, costs or records you bring","The one or two places money is leaking, in plain words","The first number to track, and how to track it","Written notes after the call"],
+   facts:[["Format","1 live call, online"],["Length","60 minutes"],["Bring","Your sales or cost records"],["Price","One time"]],
+   result:"You know where to look first, and what to track this week."},
+  {id:"price-check", biz:true, cat:"quick", name:"Price and Margin Check", usd:49,
+   pitch:"Find out what each product or service really earns.",
+   pain:"Shows which of your products or services earn less than you think, and what price to test.",
+   for:"Business owner who prices by guess or by copying others, and is afraid of selling more but earning less.",
+   best:"Business owner who prices by guess or by copying others, and is afraid of selling more but earning less.",
+   tools:["Excel","Google Sheets"],
+   get:["You send me your prices and costs for up to 10 products or services","A one page review: what each one really earns, and which lose money or margin","A price to test for the weakest items, with the reason in plain words","A 20 minute call to go through it together"],
+   facts:[["Format","Written review and short call"],["Send me","Your prices and costs"],["Limit","Up to 10 products or services"],["Price","One time"]],
+   result:"You see which prices to fix first, before you sell more at a loss."},
+  {id:"cv", for:"Applicant for data or BI roles who cannot get replies, and is afraid the CV is being ignored.", pain:"Corrects your CV line by line so recruiters see your skills.", cat:"quick", name:"CV Review", ngn:5000, pitch:"A line by line correction of your CV.", best:"Applicant for data or BI roles who cannot get replies, and is afraid the CV is being ignored.", get:["A line by line review of your CV","Clear correction points you can apply the same day"], facts:[["Format","Written review"],["Price","One time"]], result:"A CV that presents your skills clearly."},
+  {id:"linkedin", for:"Analyst who cannot get recruiters or clients to take the profile seriously, and is afraid it undersells them.", pain:"Rewrites your headline, about section, experience and featured work.", cat:"quick", name:"LinkedIn Optimisation", ngn:10000, pitch:"Rewrite points for your whole LinkedIn profile.", best:"Analyst who cannot get recruiters or clients to take the profile seriously, and is afraid it undersells them.", get:["Review of your headline, about section, experience and featured work","Specific rewrites and improvement points"], facts:[["Format","Review and rewrite points"],["Price","One time"]], result:"A profile that does some of the selling for you."},
+  {id:"portfolio", for:"Learner with projects who cannot get responses, and is afraid the projects look weak.", pain:"Shows what to fix, add or cut in your projects.", cat:"quick", name:"Portfolio Review", ngn:7500, pitch:"Feedback on how your projects read to an employer.", best:"Learner with projects who cannot get responses, and is afraid the projects look weak.", get:["Feedback on project choice, structure and presentation","What to fix, add or cut"], facts:[["Format","Review session"],["Price","One time"]], result:"A portfolio that shows business thinking, not just tools."},
+  {id:"crash", tools:["Excel", "SQL"], for:"Learner who cannot get past one SQL or Excel topic, and is afraid of falling behind.", pain:"One live session on the SQL or Excel topic you choose, with practice examples.", cat:"quick", name:"SQL or Excel Crash Session", ngn:10000, pitch:"One live session on one topic.", best:"Learner who cannot get past one SQL or Excel topic, and is afraid of falling behind.", get:["A live session on the topic you choose","Practice examples to keep"], facts:[["Format","1 live session"],["Price","One time"]], result:"You get unstuck and keep moving."},
+  {id:"interview", for:"Candidate with an interview coming who cannot explain their projects clearly, and is afraid of freezing.", pain:"A mock interview for data and BI roles, with feedback on your answers.", cat:"quick", name:"Interview Preparation", ngn:12000, pitch:"A mock interview with feedback.", best:"Candidate with an interview coming who cannot explain their projects clearly, and is afraid of freezing.", get:["A mock interview for data and BI roles","Feedback on your answers and how you present projects"], facts:[["Format","1 live session"],["Price","One time"]], result:"You walk in ready to explain your work clearly."},
+  {id:"pbi-help", tools:["Power BI"], for:"Learner or analyst who cannot get a Power BI model, measure or report working, and is afraid of getting it wrong.", pain:"Hands on help with your Power BI data model, DAX or report design.", cat:"quick", name:"Power BI Project Help", ngn:15000, from:true, pitch:"Live help with a Power BI project.", best:"Learner or analyst who cannot get a Power BI model, measure or report working, and is afraid of getting it wrong.", get:["Help with your data model, DAX or report design","Explanations so you can do it yourself next time"], facts:[["Format","Live help"],["Price","From N15,000, by scope"]], result:"Your project moves forward and you understand why."}
 ];
 function priceMain(it){ return it.usd ? USD(it.usd) : N(it.ngn); }
 function priceAlt(it){ return it.usd ? "≈ " + N(it.usd*RATE) : "≈ " + USD(Math.max(1, Math.round(it.ngn/RATE))); }
@@ -1009,25 +1121,37 @@ function usdOf(it){ return it.usd || it.ngn/RATE; }
 var cart = [];
 try { cart = JSON.parse(localStorage.getItem("ej-cart") || "[]").filter(function(id){ return SHOP.some(function(s){return s.id===id}); }); } catch(e){ cart = []; }
 function saveCart(){ try { localStorage.setItem("ej-cart", JSON.stringify(cart)); } catch(e){} }
-var shopFilter = "all";
-function renderShop(){
-  $$("#shopFilter button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.f===shopFilter ? "true" : "false"); });
-  $("#shopGrid").innerHTML = SHOP.filter(function(s){ return shopFilter==="all" || s.cat===shopFilter; }).map(function(s){
-    var inCart = cart.indexOf(s.id) > -1;
-    return '<article class="item'+(s.feat?' feat':'')+'">'+
+var shopAud = null;
+SHOP.forEach(function(s){ s.aud = (s.cat==="build"||s.biz) ? "build" : "coach"; s.tier = s.cat==="quick" ? "quick" : "main"; });
+function cardHTML(s){
+  var inCart = cart.indexOf(s.id) > -1;
+  return '<article class="item'+(s.feat?' feat':'')+'">'+
       '<button type="button" class="open" data-open="'+s.id+'" aria-label="See full details of '+s.name+'">'+
         '<span class="kick"><span class="cat">'+CATNAME[s.cat]+'</span>'+(s.feat?'<span class="badge">Recommended</span>':'')+'</span>'+
         '<h3>'+s.name+'</h3><span class="pitch">'+s.pitch+'</span>'+
-        '<span class="fix"><span><b>The pain</b>'+s.pain+'</span>'+(s.for?'<span><b>Who it is for</b>'+s.for+'</span>':'')+'</span>'+
+        '<span class="fix"><span><b>What it solves</b>'+s.pain+'</span>'+(s.for?'<span><b>Who it is for</b>'+s.for+'</span>':'')+'</span>'+
+        (s.tools&&s.tools.length?'<span class="tools"><b>Tools</b>'+s.tools.map(function(t){return '<span class="tag">'+t+'</span>'}).join("")+'</span>':'')+
         (s.time?'<span class="time">'+s.time+'</span>':'')+
         '<span class="peek">'+(s.hook||s.get).slice(0,3).map(function(g){return '<span>'+check+'<span>'+g+'</span></span>'}).join("")+'</span>'+
         '<span class="price">'+(s.from?'<small>from </small>':'')+'<b>'+priceMain(s)+'</b> <span class="alt">'+priceAlt(s)+'</span></span>'+
+        (s.addons?'<span class="addon-line"><b>Optional paid add-ons</b>'+s.addons.map(function(a){return a[0]}).join(", ")+'</span>':'')+
         (ASSURE[s.id]?'<span class="assure">'+ASSURE[s.id]+'</span>':'')+
         '<span class="more">See everything you get &rarr;</span>'+
       '</button>'+
       '<div class="act"><button type="button" class="btn '+(inCart?'added':(s.feat?'btn-sky':'btn-ink'))+'" data-add="'+s.id+'">'+(inCart?'Added &#10003;':'Add to cart')+'</button>'+
       '<button type="button" class="icon-btn" data-open="'+s.id+'" aria-label="Details">&#9432;</button></div></article>';
-  }).join("");
+}
+function renderShop(){
+  $$(".door").forEach(function(d){ d.setAttribute("aria-pressed", d.dataset.door===shopAud ? "true" : "false"); });
+  var panel = $("#shopPanel"), hint = $("#shopHint");
+  if(shopAud){
+    var mine = SHOP.filter(function(s){ return s.aud===shopAud; });
+    var main = mine.filter(function(s){ return s.tier==="main"; }), quick = mine.filter(function(s){ return s.tier==="quick"; });
+    $("#shopGrid").innerHTML = main.map(cardHTML).join("");
+    $("#quickGrid").innerHTML = quick.map(cardHTML).join("");
+    $("#quickSummary").textContent = "Above your budget? See " + quick.length + " quick sessions";
+    panel.hidden = false; hint.hidden = true;
+  } else { panel.hidden = true; hint.hidden = false; }
   $("#cartCount").textContent = cart.length;
   var fl = $("#cartFloat"); if(fl){ fl.hidden = cart.length===0; $("b", fl).textContent = cart.length; }
 }
@@ -1050,8 +1174,9 @@ function openModal(id){
     '<div><div class="price">'+(s.from?'<small>from </small>':'')+'<b>'+priceMain(s)+'</b></div><span class="alt">'+priceAlt(s)+'</span></div>'+
     '<button type="button" class="m-close" data-close aria-label="Close">&times;</button></div>'+
     '<div class="m-body"><div>'+
-      '<section><h4>Best for</h4><p>'+s.best+'</p></section>'+
+      '<section><h4>Who it is for</h4><p>'+s.best+'</p></section>'+
       '<section><h4>What you get</h4><ul class="m-list">'+s.get.map(function(g){return '<li>'+check+'<span>'+g+'</span></li>'}).join("")+'</ul></section>'+
+      (s.addons?'<section><h4>Optional paid add-ons</h4><div class="weeks">'+s.addons.map(function(a){return '<div><b>'+a[0]+'</b>'+a[1]+'</div>'}).join("")+'</div></section>':'')+
       (s.how?'<section><h4>'+(s.cat==="coach"?"Week by week":"How it works")+'</h4><div class="weeks">'+s.how.map(function(h){return '<div><b>'+h[0]+'</b>'+h[1]+'</div>'}).join("")+'</div></section>':'')+
     '</div><div>'+
       '<section><h4>At a glance</h4><div class="m-facts">'+s.facts.map(function(f){return '<div><span>'+f[0]+'</span><b>'+f[1]+'</b></div>'}).join("")+'</div></section>'+
@@ -1086,7 +1211,7 @@ document.addEventListener("click", function(e){
   else if(t.id==="cartBtn" || t.id==="cartFloat"){ openDrawer(); }
 });
 document.addEventListener("keydown", function(e){ if(e.key==="Escape" && (!$("#modal").hidden || !$("#drawer").hidden)) closeAll(); });
-$$("#shopFilter button").forEach(function(b){ b.addEventListener("click", function(){ shopFilter = b.dataset.f; renderShop(); }); });
+$$(".door").forEach(function(d){ d.addEventListener("click", function(){ shopAud = d.dataset.door; renderShop(); var t = $("#shopPanel"); if(t) t.scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"}); }); });
 var cf = document.createElement("button"); cf.type = "button"; cf.id = "cartFloat"; cf.className = "cart-btn cart-float"; cf.setAttribute("aria-label","Open cart"); cf.hidden = true;
 cf.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span>Cart</span><b>0</b>';
 document.body.appendChild(cf);
@@ -1095,11 +1220,11 @@ renderShop();
 
 /* ---------- Projects ---------- */
 var P = [
-  {id:"shopboss", prob:"Small shop owners sell every day but cannot say how much they really made, who owes them, or what is left in stock.", built:"A web app for sales, stock, credits, expenses and invoices, with an AI assistant that only explains totals the app has already checked.", out:"Live, with a free demo store anyone can try. Customer names are never sent to the AI.", name:"ShopBoss", logo:"assets/shopboss-mark.svg", what:"Profit and inventory control for small shops, with an AI assistant that only explains totals the app has already checked.", status:"Live", tags:["Supabase","JavaScript","AI assistant"],
+  {id:"shopboss", prob:"Small shop owners sell every day but cannot say how much they really made, who owes them, or what is left in stock.", built:"A web app for sales, stock, credits, expenses and invoices, with an AI assistant that only explains totals the app has already checked. I also built an Excel edition, automated with VBA, for owners who want to stay in a workbook.", out:"Live, with a free demo store anyone can try. Customer names are never sent to the AI.", name:"ShopBoss", logo:"assets/shopboss-mark.svg", what:"Profit and inventory control for small shops, with an AI assistant that only explains totals the app has already checked.", status:"Live", tags:["Supabase","JavaScript","Excel and VBA","AI assistant"],
    media:[{t:"demo",src:"demos/shopboss/index.html#home",poster:"demos/shopboss/assets/shopboss-tour-poster.jpg",label:"Try it",hint:"Free demo store with sample data. Log in with the demo account, and a short tour shows you around."},{t:"video",src:"demos/shopboss/assets/shopboss-tour.mp4",poster:"demos/shopboss/assets/shopboss-tour-poster.jpg",label:"Tour"},{t:"video",src:"assets/shopboss-conference-room.mp4",poster:"assets/shopboss-poster.webp",label:"Conference Room"}],
    cap:"Try the free demo store, watch the 86 second tour, or see the Conference Room in my own workspace.",
    q:"How much did I really make, and what should I check?",
-   did:"Sales, inventory, credits, expenses and invoices in one web app. The Conference Room answers questions like &ldquo;How much did I make yesterday?&rdquo;, asks revenue or profit when it&rsquo;s unclear, and never sends customer names to the AI.",
+   did:"Sales, inventory, credits, expenses and invoices in one web app, plus an Excel edition automated with VBA. The Conference Room answers questions like &ldquo;How much did I make yesterday?&rdquo;, asks revenue or profit when it&rsquo;s unclear, and never sends customer names to the AI.",
    links:[["Open the demo full screen","demos/shopboss/index.html#home"],["Get the Excel edition","https://selar.com/13d2f47759"]]},
   {id:"cms", prob:"Owners do not know how much cash sits on their shelves, or what to reorder.", built:"An inventory health app inside Power BI, built from a single DAX measure.", out:"Shows what you hold, what is not selling and what to reorder. It will not tell you to reorder what nobody buys. Open source.", name:"Checkmystocks", what:"An inventory health app that runs inside Power BI. What you have, what isn&rsquo;t selling, and what to reorder.", status:"Open source", tags:["Power BI","DAX","HTML in DAX"],
    media:[{t:"video",src:"assets/checkmystocks-demo.mp4",poster:"assets/checkmystocks-poster.webp",label:"Walkthrough"},{t:"img",src:"assets/cms-overview.webp"},{t:"img",src:"assets/cms-replenish.webp"},{t:"img",src:"assets/cms-deadstock.webp"},{t:"img",src:"assets/cms-landing.webp"}],
@@ -1107,7 +1232,7 @@ var P = [
    q:"How much cash is sitting on my shelves, and what should I reorder?",
    did:"A single DAX measure builds a full app interface, with a landing page, light and dark themes, search, filters and plain language headlines. It won&rsquo;t tell you to reorder something nobody is buying.",
    links:[["Read the documentation","https://github.com/codrjay/checkmystocks"]]},
-  {id:"myfin", prob:"Individuals and couples cannot see where their money goes, or whether they are getting stronger.", built:"I designed it from how people actually handle money, then built it end to end: personal and shared spaces, budgets, goals, debt, net worth and plain language reviews, in naira and dollars.", out:"In pilot, so there are no results to claim yet. What it gives you is visibility: one clear view of where money goes, and whether you are getting stronger. Try the free demo.", name:"MyFin", what:"A personal finance operating system for individuals and couples. Budgets, goals, debt and net worth, in naira and dollars.", status:"In pilot", tags:["Next.js","TypeScript","Postgres"],
+  {id:"myfin", prob:"Individuals and couples cannot see where their money goes, or whether they are getting stronger.", built:"I designed it from how people actually handle money, then built it end to end: personal and shared spaces, budgets, goals, debt, net worth and plain language reviews, in naira and dollars.", out:"One clear view of where money goes and whether you are getting stronger, for one person or for a couple. Try the free demo.", name:"MyFin", what:"A personal finance operating system for individuals and couples. Budgets, goals, debt and net worth, in naira and dollars.", status:"Free demo", tags:["Next.js","TypeScript","Postgres"],
    media:[{t:"demo",src:"demos/myfin/index.html#welcome",poster:"demos/myfin/assets/myfin-tour-poster.jpg",label:"Try it",hint:"Free demo with sample figures. Log in with the demo account, and a short tour shows you around."},{t:"video",src:"demos/myfin/assets/myfin-tour.mp4",poster:"demos/myfin/assets/myfin-tour-poster.jpg",label:"Tour"}],
    cap:"Try the free demo, or watch the 66 second tour. Real account data stays private.",
    q:"Where is my money going, and are we getting stronger?",
