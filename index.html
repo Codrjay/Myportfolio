@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script>(function(){var t;try{t=localStorage.getItem("ej-theme")}catch(e){}if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)})();</script>
+<script>(function(){var t;try{t=localStorage.getItem("ej-theme")}catch(e){}if(t!=="dark")t="light";document.documentElement.setAttribute("data-theme",t)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap">
@@ -103,10 +103,10 @@ section{position:relative}
 .hero .lede{margin-top:28px;animation:fade .9s .35s var(--ease) both}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px;animation:fade .9s .45s var(--ease) both}
 @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.creds{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);animation:fade .9s .55s var(--ease) both}
-.creds div{font-size:.9rem;color:var(--muted);flex:1 1 220px}
-.creds .creds-k{flex-basis:100%;margin:0 0 2px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep)}
-.creds b{display:block;font-family:var(--f-display);font-stretch:110%;font-size:1.05rem;color:var(--ink)}
+.creds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 28px;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);animation:fade .9s .55s var(--ease) both}
+.creds .stat b{display:block;font-family:var(--f-display);font-stretch:112%;font-weight:800;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1;color:var(--ink)}
+.creds .stat span{display:block;margin-top:8px;font-size:.92rem;color:var(--muted)}
+.creds .creds-sub{grid-column:1/-1;margin:14px 0 0;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--deep)}
 @media (max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
 .hero .wrap>*{min-width:0}
 @media (max-width:520px){.kpis{gap:6px}.kpi{padding:10px 8px}.kpi b{font-size:.82rem}.kpi em{font-size:.75rem}.panel{padding:18px}}
@@ -163,12 +163,20 @@ section{position:relative}
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:56px}
 .sec-head .lede{max-width:46ch}
 .projects{border-top:1px solid var(--line)}
-.proj{display:grid;grid-template-columns:70px 1.2fr 1fr auto;gap:28px;align-items:center;padding:34px 8px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;position:relative;isolation:isolate}
+.proj{display:grid;grid-template-columns:70px minmax(0,2.3fr) minmax(0,.8fr) auto;gap:28px;align-items:start;padding:34px 8px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;position:relative;isolation:isolate}
 .proj::before{content:"";position:absolute;inset:0;background:var(--mist);transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);z-index:-1;border-radius:4px}
 .proj:hover::before{transform:scaleY(1)}
 .proj .idx{font-family:var(--f-mono);color:var(--muted);font-size:.85rem}
 .proj h3{font-size:clamp(1.6rem,3vw,2.3rem);font-stretch:114%}
 .proj .what{color:var(--muted);font-size:.98rem;margin-top:6px}
+.proj .pbo{margin:18px 0 0;display:grid;gap:12px;max-width:64ch}
+.proj .pbo div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:14px;align-items:baseline}
+.proj .pbo dt{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep)}
+.proj .pbo dd{margin:0;font-size:.96rem;line-height:1.5;color:var(--muted)}
+.proj .pbo div:last-child dd{color:var(--text);font-weight:500}
+.proj .tags{padding-top:6px}
+.proj .go{margin-top:6px}
+@media (max-width:620px){.proj .pbo div{grid-template-columns:1fr;gap:2px}}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.04em;padding:5px 9px;border-radius:6px;background:var(--white);border:1px solid var(--line);color:var(--ink)}
 .status{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;border-radius:999px;background:var(--baby);color:var(--deep);white-space:nowrap}
@@ -311,6 +319,9 @@ section{position:relative}
 .item .price{margin-top:auto}
 .item .price b{font-size:2.3rem}
 .item .alt{font-family:var(--f-mono);font-size:.82rem;color:var(--deep-2)}
+.item .fix{display:grid;gap:10px;font-size:.9rem;line-height:1.45;color:var(--ink)}
+.item .fix b{display:block;font-family:var(--f-mono);font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep);margin-bottom:2px}
+.item .time{align-self:flex-start;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--deep-2)}
 .item .peek{display:grid;gap:6px;font-size:.9rem;color:var(--ink)}
 .item .peek>span{display:grid;grid-template-columns:16px 1fr;gap:8px}
 .item .peek svg{margin-top:4px}
@@ -435,7 +446,7 @@ body.locked{overflow:hidden}
 [data-theme="dark"] .btn-ink,[data-theme="dark"] .cart-btn:not(.cart-float),[data-theme="dark"] .seg-light button[aria-pressed="true"]{background:#fff;color:#0B0D12}
 [data-theme="dark"] .btn-ghost{color:var(--text);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
 [data-theme="dark"] .btn-ghost:hover{background:#fff;color:#0B0D12}
-[data-theme="dark"] .brand,[data-theme="dark"] .menu-btn,[data-theme="dark"] .item .peek,[data-theme="dark"] .earlier li a,[data-theme="dark"] .d-head .m-close,[data-theme="dark"] .tag{color:var(--text)}
+[data-theme="dark"] .brand,[data-theme="dark"] .menu-btn,[data-theme="dark"] .item .peek,[data-theme="dark"] .item .fix,[data-theme="dark"] .earlier li a,[data-theme="dark"] .d-head .m-close,[data-theme="dark"] .tag{color:var(--text)}
 [data-theme="dark"] .dark .earlier li a{color:#fff}
 [data-theme="dark"] .status{background:rgba(124,196,250,.14);color:var(--sky-light)}
 [data-theme="dark"] .result{background:rgba(42,157,244,.14);color:var(--text)}
@@ -493,6 +504,26 @@ body.locked{overflow:hidden}
 .typer-ghost::after{content:"";display:inline-block;width:.55em}
 .hero .lede b{color:var(--text)}
 @media (prefers-reduced-motion:reduce){.typer-live::after{animation:none}}
+/* TESTIMONIALS */
+.testi[hidden]{display:none}
+.testi-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:4px 0}
+.testi-track::-webkit-scrollbar{display:none}
+.testi-track:focus-visible{outline:2px solid var(--sky);outline-offset:4px;border-radius:12px}
+.testi-card{flex:0 0 min(100%,680px);scroll-snap-align:start;margin:0;display:grid;gap:16px}
+.testi-card img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line)}
+.testi-card figcaption{display:grid;gap:2px;padding-left:4px}
+.testi-card figcaption b{font-size:1.05rem;font-stretch:108%}
+.testi-card figcaption span{color:var(--muted);font-size:.92rem}
+.testi-nav{display:flex;align-items:center;gap:14px;margin-top:22px}
+.testi-nav[hidden]{display:none}
+.testi-nav button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:none;color:var(--ink);font-size:1.1rem;cursor:pointer;transition:background .25s,color .25s}
+.testi-nav button:hover{background:var(--ink);color:var(--white)}
+.testi-nav button:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+#testiDots{display:flex;gap:8px}
+#testiDots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:background .25s,transform .25s}
+#testiDots i.on{background:var(--sky);transform:scale(1.25)}
+[data-theme="dark"] .testi-nav button{border-color:var(--text);color:var(--text)}
+[data-theme="dark"] .testi-nav button:hover{background:var(--text);color:var(--ink)}
 /* PRODUCTS */
 .prods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
 @media (max-width:1200px){.prods{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -612,23 +643,21 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
     <div>
       <p class="typer" aria-label="Selling every day, but no profit to show? Fully booked, yet the account is always low? Cash always tight, even in a good month? Not sure that discount made money? Busy all week, but which clients really pay? Can&rsquo;t say what really makes you money?"><span class="typer-ghost" aria-hidden="true">Fully booked, yet the account is always low?</span><span class="typer-live" aria-hidden="true" id="typer">Selling every day, but no profit to show?</span></p>
       <h1><span class="line"><span>Hi, I&rsquo;m</span></span><span class="line"><span>Emmanuel&nbsp;James,</span></span><span class="line"><span class="blue">The&nbsp;Data&nbsp;Guy.</span></span></h1>
-      <p class="lede">I help business owners fix exactly that. My dashboards, tools and apps show you where your money is made, where it leaks, and what to do about it on Monday morning.</p>
+      <p class="lede">I help you build dashboards, tools and apps that show you where your money is made, where it leaks, and what to do about it on Monday morning.</p>
       <div class="hero-ctas">
         <a class="btn btn-ink magnetic" href="#work">See my work <span class="arr">&rarr;</span></a>
         <a class="btn btn-ghost magnetic" href="#services">Services and pricing</a>
       </div>
       <div class="creds">
-        <p class="creds-k">3+ years across 3+ industries</p>
-        <div><b>Dashboards</b>Power BI and web, explained in plain words</div>
-        <div><b>Business apps</b>ShopBoss and MyFin, built end to end</div>
-        <div><b>Tools and playbooks</b>Excel calculators, trackers and guides</div>
-        <div><b>Research</b>131 owner questions behind the Decision Gap Model</div>
+        <div class="stat"><b>3+</b><span>years of experience</span></div>
+        <div class="stat"><b>3+</b><span>industries</span></div>
+        <div class="stat"><b>7+</b><span>companies and sectors</span></div>
+        <p class="creds-sub">Travel, food, fragrance, consulting, fashion and more.</p>
       </div>
     </div>
 
     <figure class="portrait">
       <div class="ph"><img src="assets/emmanuel-james.webp" alt="Emmanuel James, The Data Guy" width="800" height="800"></div>
-      <figcaption>Abuja &middot; Working worldwide</figcaption>
       <div class="me-card">
         <p class="mono me-k">CEO and Founder</p>
         <h2 class="me-name">Beyond Sales</h2>
@@ -642,7 +671,7 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
   <div class="wrap">
     <div class="sec-head">
       <div><p class="eyebrow">Selected work</p><h2>Builds, not just dashboards.</h2></div>
-      <p class="lede">Each project starts from a business question and ends with a decision someone can make. Pick one to see it as it really is.</p>
+      <p class="lede">Every project below shows the problem, what I built, and what came out of it. Open one to see it working.</p>
     </div>
     <div class="projects" id="projList"></div>
   </div>
@@ -682,8 +711,8 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
 <section class="band services" id="services">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow">Services</p><h2>Pick the problem. I&rsquo;ll build the fix.</h2></div>
-      <p class="lede">Choose what fits, open any plan to see exactly what you get, and add it to your cart. We confirm everything on a short call before you pay.</p>
+      <div><p class="eyebrow">Services</p><h2>Start with the problem you have.</h2></div>
+      <p class="lede">Each plan starts from a real problem. See who it is for, what it fixes, what you get and how long it takes. Add what fits to your cart, and we confirm everything on a short call before you pay.</p>
     </div>
     <div class="shop-bar">
       <div class="seg-light" role="group" aria-label="Filter services" id="shopFilter">
@@ -724,6 +753,23 @@ footer{border-top:1px solid var(--line-dark);margin-top:96px;padding-top:28px;di
         <div class="rv"><span class="mono">10</span><h4>Cancelling</h4><p>Cancel before work starts and your first payment is refunded in full. After work starts, it covers the work already done. Coaching sessions can be moved with 24 hours&rsquo; notice.</p></div>
         <div class="rv"><span class="mono">11</span><h4>Software costs are separate</h4><p>Licences and hosting, such as Power BI Pro, domains or app hosting, are paid directly by you and never included in my prices.</p></div>
         <div class="rv"><span class="mono">12</span><h4>Clarity, not guarantees</h4><p>My work gives you clear numbers and a sound basis for decisions. Results still depend on the decisions you make, so I don&rsquo;t promise a specific revenue or profit figure.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band testi" id="testimonials" hidden>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Testimonials</p><h2>What clients say.</h2></div>
+      <p class="lede">Messages from people I have built for, shared with their permission.</p>
+    </div>
+    <div class="testi-wrap">
+      <div class="testi-track" id="testiTrack" tabindex="0" aria-label="Client testimonials"></div>
+      <div class="testi-nav" id="testiNav" hidden>
+        <button type="button" id="testiPrev" aria-label="Previous testimonial">&larr;</button>
+        <span id="testiDots" aria-hidden="true"></span>
+        <button type="button" id="testiNext" aria-label="Next testimonial">&rarr;</button>
       </div>
     </div>
   </div>
@@ -869,6 +915,31 @@ document.addEventListener("DOMContentLoaded",function(){ document.querySelectorA
   }
   setTimeout(function(){ del=true; tick(); },2600);
 })();
+/* TESTIMONIALS. To add one: copy a line in TESTI, change the image path, name and company, drop the screenshot in assets/.
+   A card with an empty name or company stays hidden, and the whole section hides if no card is ready. */
+var TESTI = [
+  {img:"assets/testimonial-1.webp", name:"Elizabeth Adesola", role:"CEO and Founder", company:"Capstone Travels and Tours Limited", alt:"WhatsApp message from a client saying working with me has been seamless and impactful, and that the apps were well tailored to their accounting needs."}
+];
+(function(){
+  var ok = TESTI.filter(function(t){ return t.img && t.name && t.company; });
+  var sec = document.getElementById("testimonials"), tr = document.getElementById("testiTrack");
+  if(!sec || !tr || !ok.length) return;
+  tr.innerHTML = ok.map(function(t){
+    return '<figure class="testi-card"><img src="'+t.img+'" alt="'+(t.alt||("WhatsApp message from "+t.name))+'" loading="lazy"><figcaption><b>'+t.name+'</b><span>'+(t.role?t.role+', ':'')+t.company+'</span></figcaption></figure>';
+  }).join("");
+  sec.hidden = false;
+  if(ok.length < 2) return;
+  var nav = document.getElementById("testiNav"), dots = document.getElementById("testiDots");
+  nav.hidden = false;
+  dots.innerHTML = ok.map(function(){ return "<i></i>"; }).join("");
+  function idx(){ var c = tr.children[0]; var w = c.getBoundingClientRect().width + 20; return Math.max(0, Math.min(ok.length-1, Math.round(tr.scrollLeft / w))); }
+  function mark(){ var i = idx(); Array.prototype.forEach.call(dots.children, function(d,j){ d.classList.toggle("on", j===i); }); }
+  function go(d){ var c = tr.children[0]; tr.scrollTo({left:(idx()+d)*(c.getBoundingClientRect().width+20), behavior:"smooth"}); }
+  document.getElementById("testiPrev").onclick = function(){ go(-1); };
+  document.getElementById("testiNext").onclick = function(){ go(1); };
+  tr.addEventListener("scroll", function(){ window.requestAnimationFrame(mark); }, {passive:true});
+  mark();
+})();
 var COMMUNITY = "https://chat.whatsapp.com/IhQsej9HvDb62p4PbAc8ne?mode=gi_t";
 
 var check = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#1A8AE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -884,53 +955,53 @@ var ASSURE = {
   "launchpad":"A past mentee passed their analytics assessment and landed the role they wanted.",
   "elite":"For job seekers who want proof of work, not just certificates."};
 var SHOP = [
-  {id:"quick-win", hook:["Your most painful number, tracked every week from your own records","Ready in 1 to 2 weeks, in the Excel or Google Sheets you already use","We walk through it together, so your team uses it from day one"], cat:"build", name:"Quick Win", usd:79, from:true,
-   pitch:"See the one number you’ve been guessing.",
+  {id:"quick-win", for:"Business owners with one clear problem and a small budget.", pain:"You cannot see the real health of your business: who owes you, what is left in stock, or what you really earned.", time:"1 to 2 weeks", hook:["Full visibility of your business health, from your own records","Ready in 1 to 2 weeks, in the Excel or Google Sheets you already use","We walk through it together, so your team uses it from day one"], cat:"build", name:"Quick Win", usd:79, from:true,
+   pitch:"See how healthy your business really is.",
    best:"An owner with one clear problem and a small budget.",
    get:["One Excel or Google Sheets tracker for one area, such as debtors, stock, or sales and profit","Set up with your own data, not a blank template","A one page instruction sheet your team can follow","A walkthrough call to show you how to use it","One round of revisions"],
    how:[["Step 1","Discovery call to pick the one area that hurts most"],["Step 2","I build the tracker around how you already work"],["Step 3","Walkthrough call and handover"]],
    facts:[["Timeline","1 to 2 weeks"],["Format","Excel or Google Sheets"],["Revisions","One round"],["Limits","One area, no dashboard"]],
-   result:"You can finally see the number you’ve been guessing, every week."},
-  {id:"decision-dashboard", hook:["Answers the 4 questions that keep owners up: am I making money, where is it leaking, what really pays, where is my cash","Every chart explained in plain words. No data skills needed","Your team trained, plus a 30 day check-in so it sticks"], cat:"build", name:"Decision Dashboard", usd:279, from:true, feat:true,
+   result:"Full visibility of your business health, every week."},
+  {id:"decision-dashboard", for:"Owners whose records are scattered and who are not sure the business is truly profitable.", pain:"Sales look fine, but you cannot tell if the business is making money, or where it leaks.", time:"3 to 5 weeks", hook:["Answers the 4 questions that keep owners up: am I making money, where is it leaking, what really pays, where is my cash","Every chart explained in plain words. No data skills needed","Your team trained, plus a 30 day check-in so it sticks"], cat:"build", name:"Decision Dashboard", usd:279, from:true, feat:true,
    pitch:"Know if the business is really making money.",
    best:"An owner whose records are everywhere and who isn’t sure the business is profitable.",
    get:["2 to 3 connected trackers feeding one dashboard","Answers the big four: are we making money, where are we losing it, which products, services and customers matter, and what is happening to cash","Power BI or a web dashboard, whichever suits your team","A plain language explainer under every chart","A training session for you and your team","A check in 30 days after handover"],
    how:[["Step 1","Discovery call and a look at your current records"],["Step 2","Clean up and connect your data"],["Step 3","Build the dashboard and review it together"],["Step 4","Training, handover and a 30 day check in"]],
    facts:[["Timeline","3 to 5 weeks"],["Format","Power BI or web dashboard"],["Training","Included"],["Follow up","30 day check in"]],
    result:"Monthly decisions based on real profit, not just sales."},
-  {id:"full-build", hook:["Your own app for sales, stock, credits and expenses, built to the ShopBoss standard you can try free above","Separate logins: you see everything, staff see only what they need","60 days of support and a monthly review of your numbers"], cat:"build", name:"Full Business Build", usd:999, from:true,
+  {id:"full-build", for:"Owners ready to grow, with a team that needs one system.", pain:"Sales, stock, credits and expenses live in notebooks, chats and spreadsheets, and nobody can find the true numbers.", time:"6 to 10 weeks", hook:["Your own app for sales, stock, credits and expenses, built to the ShopBoss standard you can try free above","Separate logins: you see everything, staff see only what they need","60 days of support and a monthly review of your numbers"], cat:"build", name:"Full Business Build", usd:999, from:true,
    pitch:"One place to run and question the whole business.",
    best:"An owner ready to grow, who needs a system the whole team can use.",
    get:["A custom web app in the style of ShopBoss: sales, inventory, credits, expenses and a KPI dashboard","Separate admin and staff access","A process mapping session before anything is built","Training for you and your team","60 days of support after launch","A monthly insight review of your numbers"],
    how:[["Step 1","Process mapping session"],["Step 2","Scope agreed on a proposal review call"],["Step 3","Built in stages, with check ins"],["Step 4","Launch, training and 60 days of support"]],
    facts:[["Timeline","6 to 10 weeks"],["Format","Web app with logins"],["Support","60 days"],["Insight review","Monthly"]],
    result:"Your business runs on a system you can question any time."},
-  {id:"clarity", hook:["60 to 90 minutes focused only on you and your goals","Your CV, LinkedIn or portfolio corrected point by point","A personal roadmap: what to learn next, and what to skip"], cat:"coach", name:"Clarity Session", ngn:20000,
+  {id:"clarity", for:"Learners and analysts jumping between courses, or whose CV, LinkedIn or portfolio is not getting replies.", pain:"You study a lot but have no direction, and your profile does not show what you can do.", time:"One 60 to 90 minute session", hook:["60 to 90 minutes focused only on you and your goals","Your CV, LinkedIn or portfolio corrected point by point","A personal roadmap: what to learn next, and what to skip"], cat:"coach", name:"Clarity Session", ngn:20000,
    pitch:"Stuck? Get honest feedback and a clear next move.",
    best:"Someone who has been jumping between courses and needs focus, or whose CV, LinkedIn or portfolio isn’t presenting them well.",
    get:["One focused live strategy session, tailored to your level, goals and gaps","CV, portfolio or LinkedIn review with direct correction points","A personalised roadmap: what to learn next, what to postpone, and how to study better","Tool guidance for your target path: BI analysis, dashboards, reporting or entry level analyst roles","Three days of follow up support while you put the advice to work"],
    facts:[["Length","1 session, 60 to 90 minutes"],["Format","Live, online"],["Follow up","3 days"],["Price","One time"]],
    result:"You leave with clarity, a stronger profile and a next step plan you can act on immediately."},
-  {id:"launchpad", hook:["Finish with a portfolio project you can show in interviews","Weekly live sessions on Excel, SQL and Power BI, built on real business questions","Accountability check-ins and WhatsApp support between sessions"], cat:"coach", name:"Launchpad Mentorship", ngn:60000, feat:true,
+  {id:"launchpad", for:"People who want structure and one strong project to show.", pain:"You learn alone, have no project to show, and nobody keeps you accountable.", time:"4 weeks", hook:["Finish with a portfolio project you can show in interviews","Weekly live sessions on Excel, SQL and Power BI, built on real business questions","Accountability check-ins and WhatsApp support between sessions"], cat:"coach", name:"Launchpad Mentorship", ngn:60000, feat:true,
    pitch:"Four weeks, one guided project, real accountability.",
    best:"Someone who wants structure, accountability and one strong project that improves both skill and visibility.",
    get:["Four live mentorship sessions with a clear weekly structure","Hands on Excel, SQL and Power BI built around real business questions","Weekly assignments and accountability check ins","One guided mini portfolio project you can publish and discuss in interviews","CV and LinkedIn optimisation","WhatsApp support between sessions"],
    how:[["Week 1","Excel foundations, data cleaning habits and business analysis thinking"],["Week 2","SQL basics, querying patterns and thinking through analyst style questions"],["Week 3","Power BI dashboards, visual structure and storytelling"],["Week 4","Portfolio finishing, CV upgrade, LinkedIn polish and interview preparation"]],
    facts:[["Length","4 weeks"],["Sessions","1 live session a week"],["Support","WhatsApp between sessions"],["Project","1 guided portfolio project"]],
    result:"Stronger fundamentals, one visible project, a better profile and more confidence applying."},
-  {id:"elite", hook:["2 to 3 premium portfolio projects, with direct coaching","16 live sessions plus recurring mock interviews","Priority WhatsApp support and weekly job and internship updates"], cat:"coach", name:"Career Accelerator Elite", ngn:150000,
+  {id:"elite", for:"People serious about competing for analyst roles.", pain:"You apply for analyst roles with no proof of work and little interview confidence.", time:"8 weeks", hook:["2 to 3 premium portfolio projects, with direct coaching","16 live sessions plus recurring mock interviews","Priority WhatsApp support and weekly job and internship updates"], cat:"coach", name:"Career Accelerator Elite", ngn:150000,
    pitch:"Eight intensive weeks to become genuinely competitive.",
    best:"Someone serious about competing for analyst roles, with stronger proof of work and an intentional job search.",
    get:["Sixteen live sessions on Excel, SQL, Power BI, data storytelling and analyst thinking","Two to three premium portfolio projects with direct coaching","Deeper CV, LinkedIn and positioning support for internships, junior analyst and BI roles","Recurring mock interviews with feedback on how you explain your work","Priority WhatsApp support throughout","Curated weekly job and internship updates, and guidance on which roles fit you","Application support: project descriptions, tailored profile, stronger positioning","An introduction to VBA automation and using AI tools for analysis"],
    how:[["Weeks 1 to 2","Excel, data cleaning and solving business questions with structure"],["Weeks 3 to 4","SQL from foundations to applied querying, plus case style thinking"],["Weeks 5 to 6","Power BI, DAX essentials, dashboard design and storytelling"],["Weeks 7 to 8","Portfolio refinement, mock interviews, job updates and application support"]],
    facts:[["Length","8 weeks"],["Sessions","2 live sessions a week"],["Projects","2 to 3 premium projects"],["Support","Priority WhatsApp"]],
    result:"Serious proof of work, interview confidence and a focused, strategic job search."},
-  {id:"cv", cat:"quick", name:"CV Review", ngn:5000, pitch:"Direct corrections that make your CV land.", best:"Anyone applying for data or BI roles.", get:["A line by line review of your CV","Clear correction points you can apply the same day"], facts:[["Format","Written review"],["Price","One time"]], result:"A CV that presents your skills clearly."},
-  {id:"linkedin", cat:"quick", name:"LinkedIn Optimisation", ngn:10000, pitch:"Make your profile match the level you’re building toward.", best:"Analysts who want recruiters and clients to take them seriously.", get:["Review of your headline, about section, experience and featured work","Specific rewrites and improvement points"], facts:[["Format","Review and rewrite points"],["Price","One time"]], result:"A profile that does some of the selling for you."},
-  {id:"portfolio", cat:"quick", name:"Portfolio Review", ngn:7500, pitch:"Find out what your projects say about you.", best:"Learners with projects who aren’t getting responses.", get:["Feedback on project choice, structure and presentation","What to fix, add or cut"], facts:[["Format","Review session"],["Price","One time"]], result:"A portfolio that shows business thinking, not just tools."},
-  {id:"crash", cat:"quick", name:"SQL or Excel Crash Session", ngn:10000, pitch:"One focused session on the skill you’re stuck on.", best:"Anyone blocked on a specific SQL or Excel topic.", get:["A live session on the topic you choose","Practice examples to keep"], facts:[["Format","1 live session"],["Price","One time"]], result:"You get unstuck and keep moving."},
-  {id:"interview", cat:"quick", name:"Interview Preparation", ngn:12000, pitch:"Practise explaining your work with confidence.", best:"Candidates with an interview coming up.", get:["A mock interview for data and BI roles","Feedback on your answers and how you present projects"], facts:[["Format","1 live session"],["Price","One time"]], result:"You walk in ready to explain your work clearly."},
-  {id:"pbi-help", cat:"quick", name:"Power BI Project Help", ngn:15000, from:true, pitch:"Hands on help with a Power BI project.", best:"Learners or analysts stuck on a model, DAX measure or report.", get:["Help with your data model, DAX or report design","Explanations so you can do it yourself next time"], facts:[["Format","Live help"],["Price","From N15,000, by scope"]], result:"Your project moves forward and you understand why."}
+  {id:"cv", pain:"Your CV is not getting replies.", cat:"quick", name:"CV Review", ngn:5000, pitch:"Direct corrections that make your CV land.", best:"Anyone applying for data or BI roles.", get:["A line by line review of your CV","Clear correction points you can apply the same day"], facts:[["Format","Written review"],["Price","One time"]], result:"A CV that presents your skills clearly."},
+  {id:"linkedin", pain:"Your profile does not match the level you are working toward.", cat:"quick", name:"LinkedIn Optimisation", ngn:10000, pitch:"Make your profile match the level you’re building toward.", best:"Analysts who want recruiters and clients to take them seriously.", get:["Review of your headline, about section, experience and featured work","Specific rewrites and improvement points"], facts:[["Format","Review and rewrite points"],["Price","One time"]], result:"A profile that does some of the selling for you."},
+  {id:"portfolio", pain:"Your projects are not getting responses.", cat:"quick", name:"Portfolio Review", ngn:7500, pitch:"Find out what your projects say about you.", best:"Learners with projects who aren’t getting responses.", get:["Feedback on project choice, structure and presentation","What to fix, add or cut"], facts:[["Format","Review session"],["Price","One time"]], result:"A portfolio that shows business thinking, not just tools."},
+  {id:"crash", pain:"One SQL or Excel topic is blocking you.", cat:"quick", name:"SQL or Excel Crash Session", ngn:10000, pitch:"One focused session on the skill you’re stuck on.", best:"Anyone blocked on a specific SQL or Excel topic.", get:["A live session on the topic you choose","Practice examples to keep"], facts:[["Format","1 live session"],["Price","One time"]], result:"You get unstuck and keep moving."},
+  {id:"interview", pain:"You have an interview coming and cannot explain your work clearly.", cat:"quick", name:"Interview Preparation", ngn:12000, pitch:"Practise explaining your work with confidence.", best:"Candidates with an interview coming up.", get:["A mock interview for data and BI roles","Feedback on your answers and how you present projects"], facts:[["Format","1 live session"],["Price","One time"]], result:"You walk in ready to explain your work clearly."},
+  {id:"pbi-help", pain:"A Power BI model, measure or report has you stuck.", cat:"quick", name:"Power BI Project Help", ngn:15000, from:true, pitch:"Hands on help with a Power BI project.", best:"Learners or analysts stuck on a model, DAX measure or report.", get:["Help with your data model, DAX or report design","Explanations so you can do it yourself next time"], facts:[["Format","Live help"],["Price","From N15,000, by scope"]], result:"Your project moves forward and you understand why."}
 ];
 function priceMain(it){ return it.usd ? USD(it.usd) : N(it.ngn); }
 function priceAlt(it){ return it.usd ? "≈ " + N(it.usd*RATE) : "≈ " + USD(Math.max(1, Math.round(it.ngn/RATE))); }
@@ -947,6 +1018,8 @@ function renderShop(){
       '<button type="button" class="open" data-open="'+s.id+'" aria-label="See full details of '+s.name+'">'+
         '<span class="kick"><span class="cat">'+CATNAME[s.cat]+'</span>'+(s.feat?'<span class="badge">Recommended</span>':'')+'</span>'+
         '<h3>'+s.name+'</h3><span class="pitch">'+s.pitch+'</span>'+
+        '<span class="fix"><span><b>The pain</b>'+s.pain+'</span>'+(s.for?'<span><b>Who it is for</b>'+s.for+'</span>':'')+'</span>'+
+        (s.time?'<span class="time">'+s.time+'</span>':'')+
         '<span class="peek">'+(s.hook||s.get).slice(0,3).map(function(g){return '<span>'+check+'<span>'+g+'</span></span>'}).join("")+'</span>'+
         '<span class="price">'+(s.from?'<small>from </small>':'')+'<b>'+priceMain(s)+'</b> <span class="alt">'+priceAlt(s)+'</span></span>'+
         (ASSURE[s.id]?'<span class="assure">'+ASSURE[s.id]+'</span>':'')+
@@ -1022,38 +1095,38 @@ renderShop();
 
 /* ---------- Projects ---------- */
 var P = [
-  {id:"shopboss", name:"ShopBoss", logo:"assets/shopboss-mark.svg", what:"Profit and inventory control for small shops, with an AI assistant that only explains totals the app has already checked.", status:"Live", tags:["Supabase","JavaScript","AI assistant"],
+  {id:"shopboss", prob:"Small shop owners sell every day but cannot say how much they really made, who owes them, or what is left in stock.", built:"A web app for sales, stock, credits, expenses and invoices, with an AI assistant that only explains totals the app has already checked.", out:"Live, with a free demo store anyone can try. Customer names are never sent to the AI.", name:"ShopBoss", logo:"assets/shopboss-mark.svg", what:"Profit and inventory control for small shops, with an AI assistant that only explains totals the app has already checked.", status:"Live", tags:["Supabase","JavaScript","AI assistant"],
    media:[{t:"demo",src:"demos/shopboss/index.html#home",poster:"demos/shopboss/assets/shopboss-tour-poster.jpg",label:"Try it",hint:"Free demo store with sample data. Log in with the demo account, and a short tour shows you around."},{t:"video",src:"demos/shopboss/assets/shopboss-tour.mp4",poster:"demos/shopboss/assets/shopboss-tour-poster.jpg",label:"Tour"},{t:"video",src:"assets/shopboss-conference-room.mp4",poster:"assets/shopboss-poster.webp",label:"Conference Room"}],
    cap:"Try the free demo store, watch the 86 second tour, or see the Conference Room in my own workspace.",
    q:"How much did I really make, and what should I check?",
    did:"Sales, inventory, credits, expenses and invoices in one web app. The Conference Room answers questions like &ldquo;How much did I make yesterday?&rdquo;, asks revenue or profit when it&rsquo;s unclear, and never sends customer names to the AI.",
    links:[["Open the demo full screen","demos/shopboss/index.html#home"],["Get the Excel edition","https://selar.com/13d2f47759"]]},
-  {id:"cms", name:"Checkmystocks", what:"An inventory health app that runs inside Power BI. What you have, what isn&rsquo;t selling, and what to reorder.", status:"Open source", tags:["Power BI","DAX","HTML in DAX"],
+  {id:"cms", prob:"Owners do not know how much cash sits on their shelves, or what to reorder.", built:"An inventory health app inside Power BI, built from a single DAX measure.", out:"Shows what you hold, what is not selling and what to reorder. It will not tell you to reorder what nobody buys. Open source.", name:"Checkmystocks", what:"An inventory health app that runs inside Power BI. What you have, what isn&rsquo;t selling, and what to reorder.", status:"Open source", tags:["Power BI","DAX","HTML in DAX"],
    media:[{t:"video",src:"assets/checkmystocks-demo.mp4",poster:"assets/checkmystocks-poster.webp",label:"Walkthrough"},{t:"img",src:"assets/cms-overview.webp"},{t:"img",src:"assets/cms-replenish.webp"},{t:"img",src:"assets/cms-deadstock.webp"},{t:"img",src:"assets/cms-landing.webp"}],
    cap:"Recorded inside Power BI. Synthetic data.",
    q:"How much cash is sitting on my shelves, and what should I reorder?",
    did:"A single DAX measure builds a full app interface, with a landing page, light and dark themes, search, filters and plain language headlines. It won&rsquo;t tell you to reorder something nobody is buying.",
    links:[["Read the documentation","https://github.com/codrjay/checkmystocks"]]},
-  {id:"myfin", name:"MyFin", what:"A personal finance operating system for individuals and couples. Budgets, goals, debt and net worth, in naira and dollars.", status:"In pilot", tags:["Next.js","TypeScript","Postgres"],
+  {id:"myfin", prob:"Individuals and couples cannot see where their money goes, or whether they are getting stronger.", built:"I designed it from how people actually handle money, then built it end to end: personal and shared spaces, budgets, goals, debt, net worth and plain language reviews, in naira and dollars.", out:"In pilot, so there are no results to claim yet. What it gives you is visibility: one clear view of where money goes, and whether you are getting stronger. Try the free demo.", name:"MyFin", what:"A personal finance operating system for individuals and couples. Budgets, goals, debt and net worth, in naira and dollars.", status:"In pilot", tags:["Next.js","TypeScript","Postgres"],
    media:[{t:"demo",src:"demos/myfin/index.html#welcome",poster:"demos/myfin/assets/myfin-tour-poster.jpg",label:"Try it",hint:"Free demo with sample figures. Log in with the demo account, and a short tour shows you around."},{t:"video",src:"demos/myfin/assets/myfin-tour.mp4",poster:"demos/myfin/assets/myfin-tour-poster.jpg",label:"Tour"}],
    cap:"Try the free demo, or watch the 66 second tour. Real account data stays private.",
    q:"Where is my money going, and are we getting stronger?",
    did:"Multi user from day one, with personal and shared spaces. Budgets for any period, goals, an emergency fund, debt, net worth, and weekly and monthly reviews in plain words.",
    links:[["Open the demo full screen","demos/myfin/index.html#welcome"]]},
-  {id:"dgm", name:"The Decision Gap Model", what:"A study of 131 real questions from small business owners, coded into the framework behind my content, course and builds.", status:"Research", tags:["Qualitative research","Framework","Data coding"], custom:true},
-  {id:"movie", name:"What makes movies successful?", what:"Power BI World Championships entry. ROI by genre, studio and budget across 7,593 films, 2000 to 2025.", status:"Competition entry", tags:["Power BI","Python","Power Query"],
+  {id:"dgm", prob:"I wanted to know what really stops small business owners from making decisions.", built:"I coded 131 real owner questions from Reddit and Quora into a four layer framework.", out:"51% of the questions were an information gap: owners did not know what they needed to know. The model now shapes my content, course and builds.", name:"The Decision Gap Model", what:"A study of 131 real questions from small business owners, coded into the framework behind my content, course and builds.", status:"Research", tags:["Qualitative research","Framework","Data coding"], custom:true},
+  {id:"movie", prob:"A first time film producer needs to know where the money should go.", built:"I cut 1.47 million records down to 7,593 films with real budgets and revenue, then built a five page Power BI report.", out:"Studio films return 130% against 27% for independents. Films budgeted $1M to $20M underperform.", name:"What makes movies successful?", what:"Power BI World Championships entry. ROI by genre, studio and budget across 7,593 films, 2000 to 2025.", status:"Competition entry", tags:["Power BI","Python","Power Query"],
    media:[1,2,3,4,5].map(function(n){return {t:"img",src:"assets/movie-"+n+".webp"}}),
    cap:"The five report pages, as submitted.",
    q:"If I&rsquo;m producing my first film, where should my money go?",
    did:"Cut 1.47 million TMDB records to 7,593 films with real budgets and revenue. Found Family and Animation more than double their budgets, studio films return 130% against 27% for independents, and films budgeted $1M to $20M underperform.",
    links:[]},
-  {id:"alpha", name:"West Africa expansion strategy", what:"A board level report on where Alpha Inc. should expand: Nigeria, Ghana or C&ocirc;te d&rsquo;Ivoire.", status:"Strategy report", tags:["Market research","Correlation analysis","Executive deck"],
+  {id:"alpha", prob:"A board had to choose between Nigeria, Ghana and C&ocirc;te d&rsquo;Ivoire for expansion.", built:"A board level report comparing GDP trends, growth, port efficiency and trade readiness.", out:"Found a near perfect inverse link between economy size and growth (r = &minus;0.98), and recommended moving into Ghana while defending Nigeria.", name:"West Africa expansion strategy", what:"A board level report on where Alpha Inc. should expand: Nigeria, Ghana or C&ocirc;te d&rsquo;Ivoire.", status:"Strategy report", tags:["Market research","Correlation analysis","Executive deck"],
    media:[{t:"iframe",src:"https://drive.google.com/file/d/10G5J6q5-WpT2CXZXO4DaajKFLPiZMYTW/preview",open:"https://drive.google.com/file/d/10G5J6q5-WpT2CXZXO4DaajKFLPiZMYTW/view"}],
    cap:"Slide deck preview from Google Drive.",
    q:"Which market gives the best return for the least friction?",
    did:"Compared GDP trends, growth rates, port efficiency and trade readiness. Found a near perfect inverse link between economy size and growth (r = &minus;0.98), and recommended moving into Ghana while defending Nigeria.",
    links:[["Open the deck","https://drive.google.com/file/d/10G5J6q5-WpT2CXZXO4DaajKFLPiZMYTW/view"]]},
-  {id:"unicorn", name:"Unicorn valuation investigation", what:"An investor facing study of where unicorn companies come from, how fast they grow, and what they return.", status:"Investor report", tags:["Power BI","R","Data cleaning"],
+  {id:"unicorn", prob:"Investors want to know where, and in which industries, unicorns pay back best.", built:"I turned text valuations into numbers, fixed a founding year error, and compared geography, industry and time to unicorn.", out:"Fintech and internet software lead, and most companies take 6 to 10 years to reach unicorn status.", name:"Unicorn valuation investigation", what:"An investor facing study of where unicorn companies come from, how fast they grow, and what they return.", status:"Investor report", tags:["Power BI","R","Data cleaning"],
    media:[{t:"iframe",src:"https://drive.google.com/file/d/1aytdnRMAI07oRzrOtpssaRnsQ7qDOCw-/preview",open:"https://drive.google.com/file/d/1aytdnRMAI07oRzrOtpssaRnsQ7qDOCw-/view"}],
    cap:"Full report preview from Google Drive.",
    q:"Where, and in which industries, do unicorns pay back best?",
@@ -1063,7 +1136,7 @@ var P = [
 
 $("#projList").innerHTML = P.map(function(p,i){
   return '<a class="proj rv" href="#showcase" data-p="'+p.id+'"><span class="idx">'+String(i+1).padStart(2,"0")+'</span>'+
-    '<div><h3>'+p.name+'</h3><p class="what">'+p.what+'</p></div>'+
+    '<div><h3>'+p.name+'</h3><dl class="pbo"><div><dt>Problem</dt><dd>'+p.prob+'</dd></div><div><dt>What I built</dt><dd>'+p.built+'</dd></div><div><dt>Outcome</dt><dd>'+p.out+'</dd></div></dl></div>'+
     '<div class="tags"><span class="status"><i></i>'+p.status+'</span>'+p.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join("")+'</div>'+
     '<span class="go" aria-hidden="true">&rarr;</span></a>';
 }).join("");
@@ -1086,7 +1159,7 @@ function showP(id){
   var strip = p.media.length>1 ? '<div class="strip">'+p.media.map(function(m,i){ var th = thumb(m); return '<button type="button" data-m="'+i+'" class="'+(i===0?'on':'')+'" aria-label="Show item '+(i+1)+'">'+(th?'<img src="'+th+'" alt="" loading="lazy">':'<span style="color:var(--white);font-size:.8rem">'+(m.label||"Live")+'</span>')+'</button>'; }).join("")+'</div>' : '';
   $("#stage").innerHTML = '<div class="pane"><div class="media"><div id="mainMedia">'+mediaHTML(p.media[0])+'</div>'+strip+'<div class="cap">'+p.cap+'</div></div>'+
     '<div class="info"><span class="status"><i></i>'+p.status+'</span><h3 class="h3">'+(p.logo?'<img src="'+p.logo+'" alt="" width="40" height="40" style="display:inline-block;vertical-align:-6px;margin-right:12px;border-radius:10px">':'')+p.name+'</h3>'+
-    '<dl><div><dt>The question</dt><dd>'+p.q+'</dd></div><div><dt>What I built</dt><dd>'+p.did+'</dd></div></dl>'+
+    '<dl><div><dt>The question</dt><dd>'+p.q+'</dd></div><div><dt>What I built</dt><dd>'+p.did+'</dd></div><div><dt>The outcome</dt><dd>'+p.out+'</dd></div></dl>'+
     '<div class="tags">'+p.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join("")+'</div>'+
     '<div class="links">'+p.links.map(function(l){return '<a class="btn btn-ghost" href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+' &nearr;</a>'}).join("")+'<a class="btn btn-sky" href="#services">Build one for me <span class="arr">&rarr;</span></a></div></div></div>';
   bindMedia(p); bindDemo();
